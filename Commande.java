@@ -3,11 +3,13 @@ import java.util.HashMap;
 public class Commande {
 
 	HashMap<Plat, Integer> liste;
+	boolean prete;
 	
 	// Constructeur
 	Commande(){
 		// De base la liste des plats est vide 
 		liste=new HashMap<Plat,Integer>();
+		prete=false;
 	}
 
 	// Getters

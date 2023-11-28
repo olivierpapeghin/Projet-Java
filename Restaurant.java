@@ -4,10 +4,9 @@ import java.util.HashMap;
 public class Restaurant {
 	
 	ArrayList<Table> tables = new ArrayList<Table>();
-	ArrayList<Employé> employés = new ArrayList<Employé>();
+	ArrayList<Employe> employes = new ArrayList<Employe>();
 	boolean ouvert;
-	Stock stockActuel= new Stock();
-	Stock stockMax= new Stock();
+	Stock stock = new Stock();
 	ArrayList<Facture> listeFacture = new ArrayList<Facture>();
 	HashMap<String, Integer> carte_plats = new HashMap<String, Integer>();
 	HashMap<String, Integer> carte_boissons = new HashMap<String, Integer>();
