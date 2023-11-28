@@ -41,4 +41,11 @@ public class GroupeClient { //Est un groupe de clients
 	ArrayList<Commande> getCommandes(){
 		return(this.commandes);
 	}
+
+	// Autre
+
+	void nouvelleCommande(Commande commande){
+		// On ajoute une nouvelle commande à la liste
+		commandes.add(commande);
+	}
 }
