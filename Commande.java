@@ -1,27 +1,30 @@
-
 import java.util.HashMap;
 
 public class Commande {
-	HashMap<String, Integer> liste = new HashMap<String, Integer>();
+
+	HashMap<Plat, Integer> liste;
 	
-	// getters utiles
+	// Constructeur
+	Commande(){
+		liste=new HashMap<Plat,Integer>();
+	}
+
+	// Getters
 	
-	int getQuantite(String produit) {
-		return(this.liste.get(produit));
+	HashMap<Plat, Integer> getListe() {
+		return this.liste;
 	}
 	
-	// setters
+	// Setters
 	
-	void addToCommande(String produit,int nbr) {
-		this.liste.put(produit, nbr);
+	void setListe(HashMap<Plat, Integer> liste){
+		this.liste=liste;
 	}
-	
-	// gestion des stocks
-	
-	void ajouterCommande(String produit, int nbr) {
-		this.liste.replace(produit, this.liste.get(produit)+nbr);
+
+	// Autre
+
+	void ajoutPlat(Plat plat,int quantite){
+		liste.put(plat,quantite);
 	}
-	
-	
 
 }

@@ -1,26 +1,34 @@
+import java.util.ArrayList;
 
 public class GroupeClient { //Est un groupe de clients
 	
-	int nb_clients; // nombre de clients dans le groupe
-	Table table; // la table assignée au groupe
-	Serveur serveur; //Serveur assigné au groupe de client
+	int nb_clients; // Nombre de clients dans le groupe
+	Table table; // La table assignée au groupe
+	ArrayList<Commande> commandes; // Liste des commandes passées par le groupe
 	
-	// constructeur
+	// Constructeur
 	
-	GroupeClient(int nbr){
+	GroupeClient(int nbr, Table table){
 		this.nb_clients=nbr;
+		this.table=table;
+		commandes=new ArrayList<Commande>();
 	}
-	// setters utiles
+	// Setters
 	
 	void setTable(Table nbr) {
 		this.table=nbr;
 	}
-	
-	void setServeur(Serveur serveur) {
-		this.serveur=serveur;
+
+	void setNb_clients(int nbr){
+		this.nb_clients=nbr;
+	}
+
+	void setCommandes(ArrayList<Commande> commandes){
+		this.commandes=commandes;
 	}
 	
-	// getters utiles
+	
+	// Getters
 	
 	int getClients() {
 		return(this.nb_clients);
@@ -29,9 +37,8 @@ public class GroupeClient { //Est un groupe de clients
 	Table getTable() {
 		return(this.table);
 	}
-	
-	Serveur getServeur() {
-		return(this.serveur);
-	}
 
+	ArrayList<Commande> getCommandes(){
+		return(this.commandes);
+	}
 }

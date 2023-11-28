@@ -10,13 +10,32 @@ public class Table {
 		this.occupe=false; // si des clients sont à la table
 	}
 	
-	void switchOccupation() { // indique si des clients se mettent à table où s'en vont
-		if(this.occupe==true) {
-			this.occupe=false;
-		}
-		else {
-			this.occupe=true;
-		}
+	// Setters
+
+	void setNumero(int num){
+		numero=num;
+	}
+
+	void setNb_places(int nb){
+		nb_places=nb;
+	}
+
+	void setOccupe(boolean occup){
+		occupe=occup;
+	}
+
+	// Getters
+
+	int getNumero(){
+		return this.numero;
+	}
+
+	int getNb_places(){
+		return this.nb_places;
+	}
+
+	boolean getOccupe(){
+		return this.occupe;
 	}
 
 }
