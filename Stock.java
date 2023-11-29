@@ -64,16 +64,27 @@ public class Stock {
 		this.liste=original.liste;
 	}
 
+	// Permet de checker si un plat est faisable avec les ingredients disponibles
 	boolean checkDisponibilite(Plat plat){
+		HashMap<String, Integer> compo = new HashMap<String, Integer>();
+		for(Map.Entry<String, Integer> entry : compo.entrySet()) {
+    		String key = entry.getKey();
+    		Integer value = entry.getValue();
+			if(liste.get(key)<value){
+				return(false);
+			}
+		}
+		return(true);
+	}
+
+	// Diminue le stock une fois le plat préparé
+	void consommationStock(Plat plat){
 		HashMap<String, Integer> compo = new HashMap<String, Integer>();
 		for(Map.Entry<String, Integer> entry : compo.entrySet()) {
     	String key = entry.getKey();
     	Integer value = entry.getValue();
+		liste.replace(key, liste.get(key)-value);
 		}
-	}
-
-	void consommationStock(){
-
 	}
 
 
