@@ -134,7 +134,6 @@ public class Interface {
 		// Initialisation du restaurant ici
 		Restaurant restaurant=new Restaurant();
 		restaurant.stock.SetStockMax(30,60, 20, 40, 30, 35,35, 30, 30, 30, 30, 30);
-
 		ecranGeneral();
 	}
 

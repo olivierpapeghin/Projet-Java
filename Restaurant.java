@@ -39,7 +39,7 @@ public class Restaurant {
 		
 	}
 
-	// Setter
+	// Getter
 
 	ArrayList<Table> getTables(){
 		return tables;
