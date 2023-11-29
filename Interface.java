@@ -128,16 +128,9 @@ public class Interface {
 			reponse=scanner.next();
 		}
 		// On fait un récap de la commande
-		System.out.println("Récapitulatif :\n"
-				+ "Pour la table "+numtable);
-		for (String i : commande.keySet()) {
-			  System.out.println("•"+i+" x"+commande.get(i));
-		}
-		
-		// Création de la commande ici
-		//
-		//
-		//
+		System.out.println("Pour la table "+numtable);
+		commande.recap();
+		restaurant.addCommande(commande); // On envoie la commande aux cuisiniers/barmans
 	}
 
 	// Ecran de récupération d'un commande (pour la livrer aux clients correspondants)
