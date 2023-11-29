@@ -1,10 +1,11 @@
 import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Interface {
 	// L'outil qui va permettre à l'utilisateur de communiquer des informations
 	static Scanner scanner = new Scanner(System.in); 
-	Restaurant restaurant; // Le restaurant dans lequel on travaille 
+	static Restaurant restaurant; // Le restaurant dans lequel on travaille 
 
 //-------------- Menu général -----------------------------------------------------------
 	public static void ecranGeneral(){
@@ -72,17 +73,21 @@ public class Interface {
 
 	// Ecran d'accueil d'un nouveau groupe de clients
 	public static void accueilClient(){
-		// On commence par vérifier s'il y a assez de tables libres
 		 System.out.println("Combien de clients y a-t-il ?");
 		 int nb_clients=scanner.nextInt();
-		 // On regarde s'il y a assez de places pour accueillir les clients
-		 if (ArrayList<Table> liste_table = restaurant.checkPlaces(nb_clients).size()==0){
-			// S'il n'y a pas assez de place
+		 // On regarde s'il y a assez de tables pour accueillir les clients
+		 ArrayList<Table> tables_client = restaurant.checkPlaces(nb_clients);
+		 if (tables_client.size()==0){
+			// S'il n'y a pas de table disponible
 			System.out.println("Il n'y a pas assez de places pour accueillir ces clients");
 			serveur(); // On retourne au menu des serveurs
 		 }
-		// S'il y a assez de place
-		
+		// S'il y a assez de place alors on peut indiquer aux clients où se placer et attendre qu'ils commandent
+		System.out.print("Ils seront à/aux table(s)"+tables_client.get(0));
+		for (int i=1;i<tables_client.size();i++){
+			System.out.print(" et "+tables_client.get(i));
+		}
+		serveur(); // Retour à l'écran serveur
 	}
 
 	// Ecran prise de commande
