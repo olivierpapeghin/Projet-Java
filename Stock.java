@@ -1,5 +1,6 @@
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class Stock {
 	private HashMap<String, Integer> liste = new HashMap<String, Integer>();
@@ -62,4 +63,18 @@ public class Stock {
 	void copyStock(Stock original) {// permet de copier la liste d'un autre stock
 		this.liste=original.liste;
 	}
+
+	boolean checkDisponibilite(Plat plat){
+		HashMap<String, Integer> compo = new HashMap<String, Integer>();
+		for(Map.Entry<String, Integer> entry : compo.entrySet()) {
+    	String key = entry.getKey();
+    	Integer value = entry.getValue();
+		}
+	}
+
+	void consommationStock(){
+
+	}
+
+
 }
