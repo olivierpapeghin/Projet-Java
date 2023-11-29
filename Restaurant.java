@@ -132,7 +132,7 @@ public class Restaurant {
 	// Setters
 
 	//Adders ( ajoute des objets au restaurant)
-	void AddTable(int places){
+	void addTable(int places){
 		int x=this.tables.get(this.tables.size()).getNumero();
 		tables.add(new Table(x+1, places));
 	}
@@ -144,6 +144,10 @@ public class Restaurant {
 		else{
 			this.jour=jour+1;
 		}
+	}
+
+	void addClient(GroupeClient client){
+		clients_actuels.add(client);
 	}
 
 	//Autres
