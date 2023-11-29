@@ -1,10 +1,10 @@
 import java.util.HashMap;
 
 public class Plat {
-    String nom;
-    int prix;
-    HashMap<String, Integer> composition;
-    String type;
+    private String nom;
+    private int prix;
+    private HashMap<String, Integer> composition;
+    private String type;
 
     // Constructeur
 

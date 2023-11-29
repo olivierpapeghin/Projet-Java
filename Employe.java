@@ -2,10 +2,10 @@ import java.util.ArrayList;
 
 public class Employe {
     // Les informations du contrat de travail
-    String nom;
-    String prenom;
-    float salaire;
-    ArrayList<String> edt;
+    private String nom;
+    private String prenom;
+    private float salaire;
+    private ArrayList<String> edt;
     
     Employe(String nom, String prenom, float salaire, ArrayList<String> edt){
         this.nom=nom;

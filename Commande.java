@@ -2,9 +2,9 @@ import java.util.HashMap;
 
 public class Commande {
 
-	HashMap<Plat, Integer> liste;
-	boolean boisson_prete;
-	boolean plat_pret;
+	private HashMap<Plat, Integer> liste;
+	private boolean boisson_prete;
+	private boolean plat_pret;
 	
 	// Constructeur
 	Commande(){
