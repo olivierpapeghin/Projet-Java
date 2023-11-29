@@ -3,13 +3,15 @@ import java.util.HashMap;
 public class Commande {
 
 	HashMap<Plat, Integer> liste;
-	boolean prete;
+	boolean boisson_prete;
+	boolean plat_pret;
 	
 	// Constructeur
 	Commande(){
-		// De base la liste des plats est vide 
+		// De base la liste des plats est vide et la commande n'est pas prête
 		liste=new HashMap<Plat,Integer>();
-		prete=false;
+		boisson_prete=false;
+		plat_pret=false;
 	}
 
 	// Getters
@@ -17,11 +19,27 @@ public class Commande {
 	HashMap<Plat, Integer> getListe() {
 		return this.liste;
 	}
+
+	boolean getBoisson_prete(){
+		return boisson_prete;
+	}
+
+	boolean getPlat_pret(){
+		return plat_pret;
+	}
 	
 	// Setters
 	
 	void setListe(HashMap<Plat, Integer> liste){
 		this.liste=liste;
+	}
+
+	void setBoisson_prete(boolean pret){
+		boisson_prete=pret;
+	}
+
+	void setPlat_pret(boolean pret){
+		plat_pret=pret;
 	}
 
 	// Autre
@@ -36,6 +54,15 @@ public class Commande {
 			prixtot+=plat.getPrix()*liste.get(plat);
 		}		// On fait prix*quantité pour chaque plat de la commande
 		return prixtot;
+	}
+
+	boolean est_prete(){
+		if (boisson_prete && plat_pret){
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 
 }

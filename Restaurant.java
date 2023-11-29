@@ -30,14 +30,33 @@ public class Restaurant {
 		// setting de la carte des boissons
 		
 		carte_boissons.put("limonade",4);
-		cartes_boissons.put("cidre_doux",5);
-		cartes_boissons.put("biere",5);
-		cartes_boissons.put("jus_de_fruit",1);
-		cartes_boissons.put("eau",0);
+		carte_boissons.put("cidre_doux",5);
+		carte_boissons.put("biere",5);
+		carte_boissons.put("jus_de_fruit",1);
+		carte_boissons.put("eau",0);
 		
 		//Creation des employés de base
 		
-		
 	}
+
+	// Setter
+
+	ArrayList<Table> getTables(){
+		return tables;
+	}
+
+	ArrayList<Employe> getEmploye(){
+		return employes;
+	}
+
+	Stock getStock(){
+		return stock;
+	}
+
+	ArrayList<Facture> getFactures(){
+		return listeFacture;
+	}
+
+	
 
 }

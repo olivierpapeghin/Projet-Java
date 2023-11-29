@@ -3,20 +3,20 @@ import java.util.ArrayList;
 public class GroupeClient { //Est un groupe de clients
 	
 	int nb_clients; // Nombre de clients dans le groupe
-	Table table; // La table assignée au groupe
+	ArrayList<Table> tables; // La table assignée au groupe
 	ArrayList<Commande> commandes; // Liste des commandes passées par le groupe
 	
 	// Constructeur
 	
-	GroupeClient(int nbr, Table table){
+	GroupeClient(int nbr, ArrayList<Table> table){
 		this.nb_clients=nbr;
-		this.table=table;
+		this.tables=table;
 		commandes=new ArrayList<Commande>();
 	}
 	// Setters
 	
-	void setTable(Table nbr) {
-		this.table=nbr;
+	void setTable(ArrayList<Table> tables) {
+		this.tables=tables;
 	}
 
 	void setNb_clients(int nbr){
@@ -34,8 +34,8 @@ public class GroupeClient { //Est un groupe de clients
 		return(this.nb_clients);
 	}
 	
-	Table getTable() {
-		return(this.table);
+	ArrayList<Table> getTable() {
+		return(this.tables);
 	}
 
 	ArrayList<Commande> getCommandes(){
