@@ -3,13 +3,14 @@ import java.util.HashMap;
 
 public class Restaurant {
 	
-	ArrayList<Table> tables = new ArrayList<Table>();
-	ArrayList<Employe> employes = new ArrayList<Employe>();
-	boolean ouvert;
-	Stock stock = new Stock();
-	ArrayList<Facture> listeFacture = new ArrayList<Facture>();
-	HashMap<String, Integer> carte_plats = new HashMap<String, Integer>();
-	HashMap<String, Integer> carte_boissons = new HashMap<String, Integer>();
+	private ArrayList<Table> tables = new ArrayList<Table>();
+	private ArrayList<Employe> employes = new ArrayList<Employe>();
+	private ArrayList<GroupeClient> clients_actuels = new ArrayList<GroupeClient>();
+	private int jour;
+	private Stock stock = new Stock();
+	private ArrayList<Facture> listeFacture = new ArrayList<Facture>();
+	private HashMap<String, Integer> carte_plats = new HashMap<String, Integer>();
+	private HashMap<String, Integer> carte_boissons = new HashMap<String, Integer>();
 	
 	Restaurant(){
 		//commence ouvert
@@ -26,7 +27,7 @@ public class Restaurant {
 		carte_plats.put("pizza",12);
 		carte_plats.put("pizza_champignon",12);
 		carte_plats.put("pizza_pepperoni",12);
-		
+
 		// setting de la carte des boissons
 		
 		carte_boissons.put("limonade",4);
@@ -36,7 +37,6 @@ public class Restaurant {
 		carte_boissons.put("eau",0);
 		
 		//Creation des employés de base
-		
 	}
 
 	// Getter
@@ -57,6 +57,41 @@ public class Restaurant {
 		return listeFacture;
 	}
 
-	
+	// Setters
+
+	//Adders ( ajoute des objets au restaurant)
+	void AddTable(int places){
+		int x=this.tables.get(this.tables.size()).getNumero();
+		tables.add(new Table(x+1, places));
+	}
+
+	void switchJours(){
+		if(this.jour==7){
+			this.jour=0;
+		}
+		else{
+			this.jour=jour+1;
+		}
+	}
+
+	//Autres
+
+	ArrayList<Table> checkPlaces(int nbr){
+		int i =0;
+		ArrayList<Table> tablesLibres= new ArrayList<Table>();
+		int nbr_libre=0;
+		while(i<tables.size()){
+			if(this.tables.get(i).getOccupe()==false){
+				tablesLibres.add(this.tables.get(i));
+				nbr_libre=nbr_libre+this.tables.get(i).getNb_places();
+				if(nbr_libre>=nbr){
+					return tablesLibres;
+				}
+			}
+			i+=1;
+		}
+		return tablesLibres;
+
+	}
 
 }
