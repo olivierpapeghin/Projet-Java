@@ -13,8 +13,6 @@ public class Restaurant {
 	private HashMap<String, Integer> carte_boissons = new HashMap<String, Integer>();
 	
 	Restaurant(){
-		//commence ouvert
-		ouvert=true;
 		// setting de la carte des plats
 		carte_plats.put("salade_tomate", 9);
 		carte_plats.put("salade",9);
