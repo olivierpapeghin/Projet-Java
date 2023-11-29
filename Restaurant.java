@@ -10,8 +10,99 @@ public class Restaurant {
 	private Stock stock = new Stock();
 	private ArrayList<Facture> listeFacture = new ArrayList<Facture>();
 	private static ArrayList<Plat> carte = new ArrayList<Plat>();
+	private ArrayList<Commande> commandeEnCours = new ArrayList<Commande>();
 	
 	Restaurant(){
+		
+		initalise_carte(); // fonction qui permet d'eviter d'avoir unr grosse quantitée de code dans le
+		//constructeur
+
+		// initialisation des variables de base
+		jour=1;
+
+		//Creation des employés de base
+	}
+
+	// Getter
+
+	ArrayList<Table> getTables(){
+		return tables;
+	}
+
+	ArrayList<Employe> getEmploye(){
+		return employes;
+	}
+
+	Stock getStock(){
+		return stock;
+	}
+
+	ArrayList<Facture> getFactures(){
+		return listeFacture;
+	}
+
+	int getJour(){
+		return jour;
+	}
+
+	ArrayList<GroupeClient> getClientsActuels(){
+		return this.clients_actuels;
+	}
+
+	ArrayList<Plat> getCarte(){
+		return carte;
+	}
+
+	// Setters
+
+	//Adders ( ajoute des objets au restaurant)
+	void addTable(int places){
+		int x=this.tables.get(this.tables.size()).getNumero();
+		tables.add(new Table(x+1, places));
+	}
+
+	void addCommande(Commande commande){
+		this.commandeEnCours.add(commande);
+	}
+
+	void addClient(GroupeClient client){
+		clients_actuels.add(client);
+	}
+
+	//Autres
+
+	void switchJours(){
+		if(this.jour==7){
+			this.jour=1;
+		}
+		else{
+			this.jour=jour+1;
+		}
+	}
+
+	ArrayList<Table> checkPlaces(int nbr){
+		int i =0;
+		ArrayList<Table> tablesLibres= new ArrayList<Table>();
+		int nbr_libre=0;
+		while(i<tables.size()){
+			if(this.tables.get(i).getOccupe()==false){
+				tablesLibres.add(this.tables.get(i));
+				nbr_libre=nbr_libre+this.tables.get(i).getNb_places();
+				this.tables.get(i).setOccupe(true);
+				if(nbr_libre>=nbr){
+					return tablesLibres;
+				}
+			}
+			i+=1;
+		}
+		return tablesLibres;
+
+	}
+
+	// fonction qui intialise la carte
+
+	void initalise_carte(){
+
 		//initialisation des plats
 		//map temporaire pour initialiser les plats
 		HashMap<String, Integer> temp=new HashMap<String, Integer>(); 
@@ -94,81 +185,8 @@ public class Restaurant {
 
 		temp.clear();
 		carte.add(new Plat("eau",0,temp,"boisson"));
-
 		
-		//Creation des employés de base
 	}
-
-	// Getter
-
-	ArrayList<Table> getTables(){
-		return tables;
-	}
-
-	ArrayList<Employe> getEmploye(){
-		return employes;
-	}
-
-	Stock getStock(){
-		return stock;
-	}
-
-	ArrayList<Facture> getFactures(){
-		return listeFacture;
-	}
-
-	int getJour(){
-		return jour;
-	}
-
-	ArrayList<GroupeClient> getClientsActuels(){
-		return this.clients_actuels;
-	}
-
-	ArrayList<Plat> getCarte(){
-		return carte;
-	}
-
-	// Setters
-
-	//Adders ( ajoute des objets au restaurant)
-	void addTable(int places){
-		int x=this.tables.get(this.tables.size()).getNumero();
-		tables.add(new Table(x+1, places));
-	}
-
-	void switchJours(){
-		if(this.jour==7){
-			this.jour=0;
-		}
-		else{
-			this.jour=jour+1;
-		}
-	}
-
-	void addClient(GroupeClient client){
-		clients_actuels.add(client);
-	}
-
-	//Autres
-
-	ArrayList<Table> checkPlaces(int nbr){
-		int i =0;
-		ArrayList<Table> tablesLibres= new ArrayList<Table>();
-		int nbr_libre=0;
-		while(i<tables.size()){
-			if(this.tables.get(i).getOccupe()==false){
-				tablesLibres.add(this.tables.get(i));
-				nbr_libre=nbr_libre+this.tables.get(i).getNb_places();
-				this.tables.get(i).setOccupe(true);
-				if(nbr_libre>=nbr){
-					return tablesLibres;
-				}
-			}
-			i+=1;
-		}
-		return tablesLibres;
-
-	}
+	
 
 }
