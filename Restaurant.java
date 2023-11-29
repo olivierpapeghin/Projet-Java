@@ -12,27 +12,89 @@ public class Restaurant {
 	private static ArrayList<Plat> carte = new ArrayList<Plat>();
 	
 	Restaurant(){
-		HashMap<String, Integer> temp=new HashMap<String, Integer>();
-		carte.add(new Plat("salade_tomate",9,))
-		carte_plats.put("salade_tomate", 9);
-		carte_plats.put("salade",9);
-		carte_plats.put("soupe_oignon",8);
-		carte_plats.put("soupe_tomate",8);
-		carte_plats.put("soupe_champignons",8);
-		carte_plats.put("burger_salade_tomate",15);
-		carte_plats.put("burger_salade",15);
-		carte_plats.put("burger",15);
-		carte_plats.put("pizza",12);
-		carte_plats.put("pizza_champignon",12);
-		carte_plats.put("pizza_pepperoni",12);
+		//initialisation des plats
+		//map temporaire pour initialiser les plats
+		HashMap<String, Integer> temp=new HashMap<String, Integer>(); 
+		// chaque "partie" est une initialisation de plats
+		temp.put("tomate", 1);
+		temp.put("salade",1);
+		carte.add(new Plat("salade_tomate",9,temp,"plat"));
+
+		temp.clear();
+		temp.put("salade", 1);
+		carte.add(new Plat("salade",9,temp,"plat"));
+		
+		temp.clear();
+		temp.put("oignon",3);
+		carte.add(new Plat("soupe_oignon",8,temp,"plat"));
+
+		temp.clear();
+		temp.put("tomate",3);
+		carte.add(new Plat("soupe_tomate",8,temp,"plat"));
+
+		temp.clear();
+		temp.put("champignon",3);
+		carte.add(new Plat("soupe_champignons",8,temp,"plat"));
+
+		temp.clear();
+		temp.put("pain",1);
+		temp.put("viande",1);
+		temp.put("salade",1);
+		temp.put("tomate",1);
+		carte.add(new Plat("burger_salade_tomate",15,temp,"plat"));
+
+		temp.clear();
+		temp.put("pain",1);
+		temp.put("viande",1);
+		temp.put("salade",1);
+		carte.add(new Plat("burger_salade",15,temp,"plat"));
+
+		temp.clear();
+		temp.put("pain",1);
+		temp.put("viande",1);
+		carte.add(new Plat("burger",15,temp,"plat"));
+
+		temp.clear();
+		temp.put("pate",1);
+		temp.put("tomate",1);
+		temp.put("fromage",1);
+		carte.add(new Plat("pizza",12,temp,"plat"));
+
+		temp.clear();
+		temp.put("pate",1);
+		temp.put("tomate",1);
+		temp.put("fromage",1);
+		temp.put("champignon",1);
+		carte.add(new Plat("pizza_champignon",12,temp,"plat"));		
+	
+		temp.clear();
+		temp.put("pate",1);
+		temp.put("tomate",1);
+		temp.put("fromage",1);
+		temp.put("pepperoni",1);
+		carte.add(new Plat("pizza_pepperoni",12,temp,"plat"));
 
 		// setting de la carte des boissons
 		
-		carte_boissons.put("limonade",4);
-		carte_boissons.put("cidre_doux",5);
-		carte_boissons.put("biere",5);
-		carte_boissons.put("jus_de_fruit",1);
-		carte_boissons.put("eau",0);
+		temp.clear();
+		temp.put("limonade",1);
+		carte.add(new Plat("limonade",4,temp,"boisson"));
+
+		temp.clear();
+		temp.put("cidre_doux",1);
+		carte.add(new Plat("cidre_doux",5,temp,"boisson"));
+
+		temp.clear();
+		temp.put("biere",1);
+		carte.add(new Plat("biere",5,temp,"boisson"));
+
+		temp.clear();
+		temp.put("jus_de_fruit",1);
+		carte.add(new Plat("jus_de_fruit",1,temp,"boisson"));
+
+		temp.clear();
+		carte.add(new Plat("eau",0,temp,"boisson"));
+
 		
 		//Creation des employés de base
 	}
@@ -61,6 +123,10 @@ public class Restaurant {
 
 	ArrayList<GroupeClient> getClientsActuels(){
 		return this.clients_actuels;
+	}
+
+	ArrayList<Plat> getCarte(){
+		return Carte;
 	}
 
 	// Setters
