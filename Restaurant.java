@@ -126,7 +126,7 @@ public class Restaurant {
 	}
 
 	ArrayList<Plat> getCarte(){
-		return Carte;
+		return carte;
 	}
 
 	// Setters
