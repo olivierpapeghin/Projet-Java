@@ -117,6 +117,14 @@ public class Interface {
 			for (int i=0;i<restaurant.getCarte().size();i++){
 				System.out.println("["+i+"] "+restaurant.getCarte().get(i).getNom()+" : "+
 				restaurant.getCarte().get(i).getPrix());
+				// On doit checker si le plat est faisable avec les stocks actuels
+				if(restaurant.getStock().ckeckDisponibilite(restaurant.getCarte().get(i))){
+					// Si on peut faire le plat
+					System.out.print(" (Disponible)");
+				}
+				else{
+					System.out.print("Indisponible");
+				}
 			}
 			System.out.print("Plat n° ");
 			int numPlat = scanner.nextInt(); // On prend le numéro du plat dans la liste
@@ -131,6 +139,7 @@ public class Interface {
 		System.out.println("Pour la table "+numtable);
 		commande.recap();
 		restaurant.addCommande(commande); // On envoie la commande aux cuisiniers/barmans
+		restaurant.getStock().consommationStock(commande);
 	}
 
 	// Ecran de récupération d'un commande (pour la livrer aux clients correspondants)
