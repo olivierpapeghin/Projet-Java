@@ -71,7 +71,11 @@ public class Interface {
 		}
 	}
 
-	// Ecran d'accueil d'un nouveau groupe de clients
+	//Ecran d'accueil d'un nouveau groupe de clients
+	/*On prend le nombre de clients, puis on regarde s'il y a assez de place pour eux
+	 * si oui on leur assigne des tables (qui deviennent donc occupée)
+	 * sinon on ne peut pas les accueillir
+	 */
 	public static void accueilClient(){
 		 System.out.println("Combien de clients y a-t-il ?");
 		 int nb_clients=scanner.nextInt();
@@ -87,27 +91,40 @@ public class Interface {
 		for (int i=1;i<tables_client.size();i++){
 			System.out.print(" et "+tables_client.get(i));
 		}
+		restaurant.addClient(new GroupeClient(nb_clients, tables_client)); // On ajoute les clients
 		serveur(); // Retour à l'écran serveur
 	}
 
 	// Ecran prise de commande
+	/*
+	 * Lors de la prise de commande le serveur sélectionne les plats et leur quantité parmi les plats de la 
+	 * carte, une fois terminé un récap s'affiche pour qu'il confirme.
+	 * Une fois confirmée la commande est envoyée dans les commandes en cours qui seront effectuées par les
+	 * cuisiniers et barmans
+	 */
 	public static void priseCommande() {
-		HashMap<String,Integer> commande = new HashMap<String,Integer>();
-		// On prend le numéro de table pour plus tard pouvoir retrouver les clients
+		Commande commande = new Commande();
+		// On prend le numéro de table pour pouvoir retrouver les clients
 		System.out.println("---- Vous êtes dans le menu de prise de commande ----\n"
 				+"Quel est le numéro de la table qui commande ?");
 		int numtable=scanner.nextInt();
 		// Maintenant on prend la commande
 		System.out.println("Veuillez entrer la commande : (Produit puis quantité)\n");
 		String reponse = "oui";
-		// On dit que tant que le serveur ne décide pas que c'est terminé on continue à ajouter
+		// On dit que tant que le serveur ne décide pas que c'est terminé on continue à ajouter des plats
 		while(reponse.equals("oui")) {
-			System.out.println("Nom Quantité : ");
-			String nomProduit = scanner.next();
-			int quantiteProduit = scanner.nextInt();
-			commande.put(nomProduit, quantiteProduit);
-			
-			System.out.println("Continuer ? (oui/non");
+			// On affiche la carte pour que le serveur sélectionne le bon plat
+			for (int i=0;i<restaurant.getCarte().size();i++){
+				System.out.println("["+i+"] "+restaurant.getCarte().get(i).getNom()+" : "+
+				restaurant.getCarte().get(i).getPrix());
+			}
+			System.out.print("Plat n° ");
+			int numPlat = scanner.nextInt(); // On prend le numéro du plat dans la liste
+			System.out.print(" x ");
+			int quantitePlat = scanner.nextInt(); // Puis la quantité
+			commande.ajoutPlat(restaurant.getCarte().get(numPlat), quantitePlat); // On ajoute à la commande
+
+			System.out.println("Continuer ? (oui/non)");
 			reponse=scanner.next();
 		}
 		// On fait un récap de la commande
@@ -148,7 +165,7 @@ public class Interface {
 	public static void main(String[] args) {
 		// Initialisation du restaurant ici
 		Restaurant restaurant=new Restaurant();
-		restaurant.getStock().SetStockMax(30,60, 20, 40, 30, 35,35, 30, 30, 30, 30, 30);
+		restaurant.getStock().SetStockMax(30,60, 20, 40, 30, 35,35, 30,20, 30, 30, 30, 30);
 		ecranGeneral();
 	}
 
