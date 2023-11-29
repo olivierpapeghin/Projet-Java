@@ -1,10 +1,10 @@
 import java.util.ArrayList;
 
 public class Facture {
-    int nb_clients;
-    int numero_table;
-    int prix_total;
-    ArrayList<Commande> detail_commandes;
+    private int nb_clients;
+    private int numero_table;
+    private int prix_total;
+    private ArrayList<Commande> detail_commandes;
 
     Facture(int nb_clients, int numero_table, int prix_total, ArrayList<Commande> detail_commandes){
         this.nb_clients=nb_clients;

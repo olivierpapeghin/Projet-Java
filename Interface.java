@@ -2,7 +2,9 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class Interface {
-	static Scanner scanner = new Scanner(System.in);
+	// L'outil qui va permettre à l'utilisateur de communiquer des informations
+	static Scanner scanner = new Scanner(System.in); 
+	Restaurant restaurant; // Le restaurant dans lequel on travaille 
 
 //-------------- Menu général -----------------------------------------------------------
 	public static void ecranGeneral(){
@@ -73,6 +75,14 @@ public class Interface {
 		// On commence par vérifier s'il y a assez de tables libres
 		 System.out.println("Combien de clients y a-t-il ?");
 		 int nb_clients=scanner.nextInt();
+		 // On regarde s'il y a assez de places pour accueillir les clients
+		 if (ArrayList<Table> liste_table = restaurant.checkPlaces(nb_clients).size()==0){
+			// S'il n'y a pas assez de place
+			System.out.println("Il n'y a pas assez de places pour accueillir ces clients");
+			serveur(); // On retourne au menu des serveurs
+		 }
+		// S'il y a assez de place
+		
 	}
 
 	// Ecran prise de commande
@@ -133,7 +143,7 @@ public class Interface {
 	public static void main(String[] args) {
 		// Initialisation du restaurant ici
 		Restaurant restaurant=new Restaurant();
-		restaurant.stock.SetStockMax(30,60, 20, 40, 30, 35,35, 30, 30, 30, 30, 30);
+		restaurant.getStock().SetStockMax(30,60, 20, 40, 30, 35,35, 30, 30, 30, 30, 30);
 		ecranGeneral();
 	}
 

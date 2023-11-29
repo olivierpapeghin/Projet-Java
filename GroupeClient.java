@@ -2,9 +2,9 @@ import java.util.ArrayList;
 
 public class GroupeClient { //Est un groupe de clients
 	
-	int nb_clients; // Nombre de clients dans le groupe
-	ArrayList<Table> tables; // La table assignée au groupe
-	ArrayList<Commande> commandes; // Liste des commandes passées par le groupe
+	private int nb_clients; // Nombre de clients dans le groupe
+	private ArrayList<Table> tables; // La table assignée au groupe
+	private ArrayList<Commande> commandes; // Liste des commandes passées par le groupe
 	
 	// Constructeur
 	
