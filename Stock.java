@@ -30,7 +30,7 @@ public class Stock {
 	}
 
 	//Contructeur
-	Stock(int nbr_salade,int nbr_tomate,int nbr_oignons,int nbr_champis,int nbr_viande,int nbr_pain,
+	void SetStockMax(int nbr_salade,int nbr_tomate,int nbr_oignons,int nbr_champis,int nbr_viande,int nbr_pain,
 	int nbr_pate,int nbr_fromage,int nbr_limonade,int nbr_jus, int nbr_biere,int nbr_cidre){
 		this.liste_max.put("salade", nbr_salade);
 		this.liste_max.put("tomate", nbr_tomate);
