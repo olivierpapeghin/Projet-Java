@@ -4,13 +4,15 @@ public class Plat {
     String nom;
     int prix;
     HashMap<String, Integer> composition;
+    String type;
 
     // Constructeur
 
-    Plat(String nom, int prix, HashMap<String, Integer> composition){
+    Plat(String nom, int prix, HashMap<String, Integer> composition,String type){
         this.nom=nom;
         this.prix=prix;
         this.composition=composition;
+        this.type=type;
     }
 
     // Getters
@@ -27,6 +29,10 @@ public class Plat {
         return composition;
     }
 
+    String getType(){
+        return type;
+    }
+
     // Setters
 
     void setNom(String nom){
@@ -39,5 +45,9 @@ public class Plat {
 
     void setComposition(HashMap<String, Integer> composition){
         this.composition=composition;
+    }
+
+    void setType(String type){
+        this.type=type;
     }
 }

@@ -9,11 +9,11 @@ public class Restaurant {
 	private int jour;
 	private Stock stock = new Stock();
 	private ArrayList<Facture> listeFacture = new ArrayList<Facture>();
-	private HashMap<String, Integer> carte_plats = new HashMap<String, Integer>();
-	private HashMap<String, Integer> carte_boissons = new HashMap<String, Integer>();
+	private static ArrayList<Plat> carte = new ArrayList<Plat>();
 	
 	Restaurant(){
-		// setting de la carte des plats
+		HashMap<String, Integer> temp=new HashMap<String, Integer>();
+		carte.add(new Plat("salade_tomate",9,))
 		carte_plats.put("salade_tomate", 9);
 		carte_plats.put("salade",9);
 		carte_plats.put("soupe_oignon",8);
@@ -55,6 +55,14 @@ public class Restaurant {
 		return listeFacture;
 	}
 
+	int getJour(){
+		return jour;
+	}
+
+	ArrayList<GroupeClient> getClientsActuels(){
+		return this.clients_actuels;
+	}
+
 	// Setters
 
 	//Adders ( ajoute des objets au restaurant)
@@ -82,6 +90,7 @@ public class Restaurant {
 			if(this.tables.get(i).getOccupe()==false){
 				tablesLibres.add(this.tables.get(i));
 				nbr_libre=nbr_libre+this.tables.get(i).getNb_places();
+				this.tables.get(i).setOccupe(true);
 				if(nbr_libre>=nbr){
 					return tablesLibres;
 				}
