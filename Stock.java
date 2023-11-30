@@ -60,8 +60,8 @@ public class Stock {
 		this.liste.replace(produit, this.liste.get(produit)+nbr);
 	}
 	
-	void copyStock(Stock original) {// permet de copier la liste d'un autre stock
-		this.liste=original.liste;
+	void fillStock() {// permet de copier la liste d'un autre stock
+		this.liste=this.liste_max;
 	}
 
 	// Permet de checker si un plat est faisable avec les ingredients disponibles
