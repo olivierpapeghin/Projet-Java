@@ -25,15 +25,17 @@ public class Barman extends Employe{
                 }
 			}
         }
-        System.out.println("indiquez le numéro de la commande faite, 0 pour sortie du menu\n");
+        System.out.println("indiquez le numéro de la commande faite, 0 pour sortir du menu\n");
         int choixCommande = scanner.nextInt();
         if(choixCommande==0){
+            scanner.close();
             return(0);
         }
         else{
             liste_commandes.get(choixCommande-1).setBoisson_prete(true);
             GestionDesCommandes(restaurant);
         }
+        scanner.close();
         return(0);
     }
 }
