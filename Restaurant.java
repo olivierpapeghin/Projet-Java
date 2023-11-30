@@ -103,6 +103,9 @@ public class Restaurant {
 			}
 			i+=1;
 		}
+		if(nbr_libre<nbr){
+			tablesLibres.clear();
+		}
 		return tablesLibres;
 
 	}

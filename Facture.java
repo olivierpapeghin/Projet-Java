@@ -1,6 +1,17 @@
+// Pour écrire en String avec précision dans les txt
+// import java.util.ArrayList;
+// import java.io.PrintWriter;
+// import java.io.FileNotFoundException;
+
+// Pour écrire en Sérializant dans les txt
+import java.io.BufferedOutputStream;
+import java.io.ObjectOutputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.io.PrintWriter;
-import java.io.FileNotFoundException;
+import java.util.HashMap;
+
 
 public class Facture {
     private int nb_clients;
@@ -16,7 +27,7 @@ public class Facture {
     }
 
     public void Ecriture(){
-        PrintWriter fichier = null;
+        /*PrintWriter fichier = null;
 		try {
 			fichier = new PrintWriter("facture.txt");
 		} catch (FileNotFoundException e) {
@@ -37,6 +48,30 @@ public class Facture {
         catch(Exception x) {
             System.err.format("Exception : %s%n", x);
             x.getStackTrace();
-        }
+        }*/
+
+        final String dataFile = "facture1.txt";
+		try (
+			ObjectOutputStream out = new ObjectOutputStream(
+					new BufferedOutputStream(
+							new FileOutputStream(dataFile)
+					)
+			)
+		)
+		{
+			out.writeObject(LocalDate.now());
+			out.writeInt(nb_clients);
+			out.writeInt(numero_table);
+            out.writeInt(prix_total);
+            for(Commande c : detail_commandes){
+                HashMap<Plat,Integer> tempo = c.getListe();
+			    out.writeObject(tempo);
+            }
+			System.out.println("Ecriture de la Facture réussit.");
+			out.close();
+		}
+		catch(IOException e){
+			System.out.println("Problème détecté : " + e);
+		}
     }
 }
