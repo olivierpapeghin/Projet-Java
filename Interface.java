@@ -172,6 +172,7 @@ public class Interface {
 	
 
 	public static void main(String[] args) {
+		Interface affichage = new Interface();
 		// Initialisation du restaurant ici
 		Restaurant restaurant=new Restaurant();
 		// On set le stock
@@ -207,7 +208,7 @@ public class Interface {
 		restaurant.addEmploye(new Serveur("Sergiani","Enzo",300,edt));
 		edt.clear(); edt.add("Lundi"); edt.add("Mardi"); edt.add("Jeudi"); edt.add("Vendredi"); edt.add("Samedi");
 		restaurant.addEmploye(new Serveur("Yataghene","Lydia",1300,edt));
-
+		affichage.restaurant=restaurant;
 		
 		ecranGeneral();
 	}
