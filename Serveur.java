@@ -13,17 +13,17 @@ public class Serveur extends Employe{
 	 * sinon on ne peut pas les accueillir
 	 */
     public void accueilClient(Restaurant restaurant, Scanner scanner){
-        System.out.println("Combien de clients y a-t-il ?");
+        System.out.println("\nCombien de clients y a-t-il ?");
         int nb_clients=scanner.nextInt();
         // On regarde s'il y a assez de tables pour accueillir les clients
         ArrayList<Table> tables_client = restaurant.checkPlaces(nb_clients);
         if (tables_client.size()==0){
            // S'il n'y a pas de table disponible
-           System.out.println("Il n'y a pas assez de places pour accueillir ces clients\n");
+           System.out.println("\nIl n'y a pas assez de places pour accueillir ces clients\n");
         }
         else{
             // S'il y a assez de place alors on peut indiquer aux clients où se placer et attendre qu'ils commandent
-            System.out.print("Ils seront à/aux table(s) "+tables_client.get(0).getNumero());
+            System.out.print("\nIls seront à/aux table(s) "+tables_client.get(0).getNumero());
             for (int i=1;i<tables_client.size();i++){
                 System.out.print(" et "+tables_client.get(i).getNumero());
             }
@@ -42,10 +42,10 @@ public class Serveur extends Employe{
     public void priseCommande(Restaurant restaurant, Scanner scanner){
         Commande commande = new Commande();
 		// On prend le numéro de table pour pouvoir retrouver les clients
-		System.out.println("Quel est le numéro de la table qui commande ?");
+		System.out.println("\nQuel est le numéro de la table qui commande ?");
 		int numtable=scanner.nextInt();
 		// Maintenant on prend la commande
-		System.out.println("Veuillez entrer la commande : (Produit puis quantité)\n");
+		System.out.println("\nVeuillez entrer la commande : (Produit puis quantité)\n");
 		String reponse = "oui";
 		// On dit que tant que le serveur ne décide pas que c'est terminé on continue à ajouter des plats
 		while(reponse.equals("oui")) {

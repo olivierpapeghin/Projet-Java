@@ -70,6 +70,7 @@ public class Commande {
 		for (Plat plat : liste.keySet()) {
 			  System.out.println("-"+plat.getNom()+" x"+liste.get(plat));
 		}
+		System.out.println("\n");
 	}
 
 }
