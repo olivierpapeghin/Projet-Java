@@ -78,6 +78,9 @@ public class Restaurant {
 		}
 	}
 
+
+	// verifie si l'on peut placer les clients, et si oui, donne les tables qui seront  associées
+	//aux clients
 	ArrayList<Table> checkPlaces(int nbr){
 		int i =0;
 		ArrayList<Table> tablesLibres= new ArrayList<Table>();
