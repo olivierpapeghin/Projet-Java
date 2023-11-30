@@ -59,18 +59,23 @@ public class Interface {
 		switch(choix) {
 			case 1:
 				accueilClient();
+				serveur();
 				break;
 			case 2:
 				priseCommande();
+				serveur();
 				break;
 			case 3:
 				recupCommande();
+				serveur();
 				break;
 			case 4:
 				addition();
+				serveur();
 				break;
 			case 5:
 				ecranGeneral();
+				break;
 		}
 	}
 
@@ -144,7 +149,7 @@ public class Interface {
 		commande.recap();
 		restaurant.addCommande(commande); // On envoie la commande aux cuisiniers/barmans
 		restaurant.getStock().consommationStock(commande);
-		serveur();
+		
 	}
 
 	// Ecran de récupération d'un commande (pour la livrer aux clients correspondants)
