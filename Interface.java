@@ -164,9 +164,26 @@ public class Interface {
 
 //-------------- Menu du barman -----------------------------------------------------------
 	public static void bar() {
-		Barman barman = new Barman(null, null, 0, null);
-		barman.GestionDesCommandes(restaurant);
+		System.out.println("Quelle action souhaitez vous faire ?\n"
+				+ "1- Gestion des commandes\n"
+				+ "2- Retour");
+		int choixEcran = scanner.nextInt();
+		afficheEcranBarman(choixEcran);
 	}
+
+	public static void afficheEcranBarman(int choix){
+		switch(choix) {
+			case 1:
+				Barman barman = new Barman(null, null, 0, null);
+				barman.GestionDesCommandes(restaurant);
+				bar();
+				break;
+			case 2:
+				ecranGeneral();
+				break;
+		}
+	}
+
 
 //-------------- Menu du manager -----------------------------------------------------------
 	public static void monitoring() {
