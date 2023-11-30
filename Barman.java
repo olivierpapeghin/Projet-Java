@@ -24,6 +24,7 @@ public class Barman extends Employe{
                     System.out.println(nbr_plat+" "+plat.getNom());
                 }
 			}
+            i+=1;
         }
         System.out.println("indiquez le numéro de la commande faite, 0 pour sortir du menu\n");
         int choixCommande = scanner.nextInt();
