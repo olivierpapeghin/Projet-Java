@@ -9,7 +9,7 @@ public class Barman extends Employe{
         super(nom,prenom,salaire,edt);
     }
 
-    int GestionDesCommandes(Restaurant restaurant){
+    void GestionDesCommandes(Restaurant restaurant){
         Scanner scanner = new Scanner(System.in); 
         ArrayList<Commande> liste_commandes=restaurant.getCommandes();
         System.out.println("Liste des commandes à faire :\n");
@@ -29,17 +29,17 @@ public class Barman extends Employe{
             }
             i+=1;
         }
-        System.out.println("indiquez le numéro de la commande faite, 0 pour sortir du menu\n");
+        System.out.println("indiquez le numéro de la commande faite\n");
         int choixCommande = scanner.nextInt();
-        if(choixCommande==0){
+        if(liste_commandes.get(choixCommande-1)==null){
+            // gestion des problèmes
             scanner.close();
-            return(0);
         }
         else{
             liste_commandes.get(choixCommande-1).setBoisson_prete(true);
             GestionDesCommandes(restaurant);
         }
         scanner.close();
-        return(0);
+
     }
 }
