@@ -121,7 +121,7 @@ public class Interface {
 				System.out.println("["+i+"] "+restaurant.getCarte().get(i).getNom()+" : "+
 				restaurant.getCarte().get(i).getPrix());
 				// On doit checker si le plat est faisable avec les stocks actuels
-				if(restaurant.getStock().ckeckDisponibilite(restaurant.getCarte().get(i))){
+				if(restaurant.getStock().checkDisponibilite(restaurant.getCarte().get(i))){
 					// Si on peut faire le plat
 					System.out.print(" (Disponible)");
 				}
@@ -172,12 +172,43 @@ public class Interface {
 	
 
 	public static void main(String[] args) {
+		Interface affichage = new Interface();
 		// Initialisation du restaurant ici
 		Restaurant restaurant=new Restaurant();
 		// On set le stock
 		restaurant.getStock().SetStockMax(30,60, 20, 40, 30, 35,35, 30,20, 30, 30, 30, 30);
 		// Puis les tables
-		
+		restaurant.addTable(1,4);
+		restaurant.addTable(2,4);
+		restaurant.addTable(3,4);
+
+		// Puis les employés
+		// Le manager
+		ArrayList<String> edt = new ArrayList<String>();
+		edt.add("Lundi"); edt.add("Mardi"); edt.add("Mercredi"); edt.add("Jeudi");
+		edt.add("Vendredi"); edt.add("Samedi");
+		restaurant.addEmploye(new Manager("Papeghin","Olivier",4500,edt));
+
+		// Les barmans
+		edt.clear(); edt.add("Lundi"); edt.add("Mardi"); edt.add("Mercredi");
+		restaurant.addEmploye(new Barman("Lacroix","Matthieu",2000,edt));
+		edt.clear(); edt.add("Jeudi"); edt.add("Vendredi"); edt.add("Samedi");
+		restaurant.addEmploye(new Barman("Delerue","Paul",2000,edt));
+
+		// Les cuisiniers
+		edt.clear(); edt.add("Lundi"); edt.add("Mardi"); edt.add("Jeudi"); edt.add("Vendredi");
+		restaurant.addEmploye(new Cuisinier("Etchebest","Philippe",1300,edt));
+		edt.clear(); edt.add("Lundi"); edt.add("Mardi"); edt.add("Mercedi"); edt.add("Vendredi"); edt.add("Samedi");
+		restaurant.addEmploye(new Cuisinier("Bocuse","Paul",1300,edt));
+		restaurant.addEmploye(new Cuisinier("Bigard","Jean-marie",1500,edt));
+		restaurant.addEmploye(new Cuisinier("Rosier","Enzo",300,edt));
+
+		// Les serveurs
+		edt.clear(); edt.add("Lundi"); edt.add("Mardi"); edt.add("Mercredi"); edt.add("Vendredi"); edt.add("Samedi");
+		restaurant.addEmploye(new Serveur("Sergiani","Enzo",300,edt));
+		edt.clear(); edt.add("Lundi"); edt.add("Mardi"); edt.add("Jeudi"); edt.add("Vendredi"); edt.add("Samedi");
+		restaurant.addEmploye(new Serveur("Yataghene","Lydia",1300,edt));
+		affichage.restaurant=restaurant;
 		
 		ecranGeneral();
 	}

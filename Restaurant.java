@@ -53,10 +53,13 @@ public class Restaurant {
 		return carte;
 	}
 
+	ArrayList<Commande> getCommandes(){
+		return this.commandeEnCours;
+	}
+
 	//Adders ( ajoute des objets au restaurant)
-	void addTable(int places){
-		int x=this.tables.get(this.tables.size()).getNumero();
-		tables.add(new Table(x+1, places));
+	void addTable(int num, int places){
+		tables.add(new Table(num, places));
 	}
 
 	void addCommande(Commande commande){
@@ -65,6 +68,10 @@ public class Restaurant {
 
 	void addClient(GroupeClient client){
 		clients_actuels.add(client);
+	}
+
+	void addEmploye(Employe employe){
+		this.employes.add(employe);
 	}
 
 	//Autres
@@ -78,6 +85,9 @@ public class Restaurant {
 		}
 	}
 
+
+	// verifie si l'on peut placer les clients, et si oui, donne les tables qui seront  associées
+	//aux clients
 	ArrayList<Table> checkPlaces(int nbr){
 		int i =0;
 		ArrayList<Table> tablesLibres= new ArrayList<Table>();
