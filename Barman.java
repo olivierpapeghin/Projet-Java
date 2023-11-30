@@ -14,7 +14,11 @@ public class Barman extends Employe{
         ArrayList<Commande> liste_commandes=restaurant.getCommandes();
         System.out.println("Liste des commandes à faire :\n");
         int i=0;
-        while(i<liste_commandes.size()){
+        if(liste_commandes.size()==0){
+            System.out.println("Il n'y a aucune commandes");
+        }
+        else{
+            while(i<liste_commandes.size()){
             if(liste_commandes.get(i).getBoisson_prete()!=true){
                 System.out.println(" la commande numéro "+i+1+" contient:\n");
                 HashMap<Plat, Integer> liste_plats=liste_commandes.get(i).getListe();
@@ -40,6 +44,9 @@ public class Barman extends Employe{
             GestionDesCommandes(restaurant);
         }
         scanner.close();
+
+        }
+       
 
     }
 }

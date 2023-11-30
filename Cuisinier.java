@@ -9,7 +9,7 @@ public class Cuisinier extends Employe{
         super(nom,prenom,salaire,edt);
     }
 
-    int GestionDesCommandes(Restaurant restaurant){
+    void GestionDesCommandes(Restaurant restaurant){
         Scanner scanner = new Scanner(System.in); 
         ArrayList<Commande> liste_commandes=restaurant.getCommandes();
         System.out.println("Liste des commandes à faire :\n");
@@ -33,13 +33,13 @@ public class Cuisinier extends Employe{
         int choixCommande = scanner.nextInt();
         if(choixCommande==0){
             scanner.close();
-            return(0);
+            
         }
         else{
             liste_commandes.get(choixCommande-1).setPlat_pret(true);
             GestionDesCommandes(restaurant);
         }
         scanner.close();
-        return(0);
+        
     }
 }
