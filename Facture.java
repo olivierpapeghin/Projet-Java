@@ -50,7 +50,7 @@ public class Facture {
             x.getStackTrace();
         }*/
 
-        final String dataFile = "C:\\Users\\Administrateur\\Documents\\Supérieur_CIR-3\\$PROGRA_Java\\serial_document.txt";
+        final String dataFile = "facture1.txt";
 		try (
 			ObjectOutputStream out = new ObjectOutputStream(
 					new BufferedOutputStream(
