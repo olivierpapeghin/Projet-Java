@@ -41,7 +41,7 @@ public class Cuisinier extends Employe{
         }
         else{
             liste_commandes.get(choixCommande-1).setPlat_pret(true);
-            GestionDesCommandes(restaurant);
+            
         }
         scanner.close();
 

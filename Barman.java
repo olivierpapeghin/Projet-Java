@@ -41,7 +41,7 @@ public class Barman extends Employe{
         }
         else{
             liste_commandes.get(choixCommande-1).setBoisson_prete(true);
-            GestionDesCommandes(restaurant);
+            
         }
         scanner.close();
 
