@@ -63,11 +63,13 @@ public class Facture {
 			out.writeInt(nb_clients);
 			out.writeInt(numero_table);
             out.writeInt(prix_total);
+            System.out.println("Résumé de la commande :\n");
             for(Commande c : detail_commandes){
+                c.recap();
                 HashMap<Plat,Integer> tempo = c.getListe();
 			    out.writeObject(tempo);
             }
-			System.out.println("Ecriture de la Facture réussit.");
+			System.out.println("\nEcriture de la facture réussit.\n");
 			out.close();
 		}
 		catch(IOException e){
