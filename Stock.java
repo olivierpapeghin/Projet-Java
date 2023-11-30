@@ -78,12 +78,17 @@ public class Stock {
 	}
 
 	// Diminue le stock une fois le plat préparé
-	void consommationStock(Plat plat){
-		HashMap<String, Integer> compo = new HashMap<String, Integer>();
-		for(Map.Entry<String, Integer> entry : compo.entrySet()) {
-    	String key = entry.getKey();
-    	Integer value = entry.getValue();
-		liste.replace(key, liste.get(key)-value);
+	void consommationStock(Commande commande){
+		HashMap<Plat, Integer> liste = commande.getListe();
+		for(Map.Entry<Plat, Integer> entry : liste.entrySet()) {
+    		Plat plats = entry.getKey();
+    		Integer nbr_plat = entry.getValue();
+			HashMap<String, Integer> compo = plats.getComposition();
+			for(Map.Entry<String, Integer> entry2 : compo.entrySet()) {
+    			String ingredient = entry2.getKey();
+    			Integer nbr_ingredient = entry.getValue();
+				this.liste.replace(ingredient,this.liste.get(ingredient)-(nbr_ingredient*nbr_plat));
+			}
 		}
 	}
 
