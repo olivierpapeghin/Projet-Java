@@ -59,7 +59,7 @@ public class Restaurant {
 
 	//Adders ( ajoute des objets au restaurant)
 	void addTable(int places){
-		int x=this.tables.get(this.tables.size()).getNumero();
+		int x=this.tables.get(this.tables.size()-1).getNumero();
 		tables.add(new Table(x+1, places));
 	}
 
