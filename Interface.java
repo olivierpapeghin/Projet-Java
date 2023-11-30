@@ -90,10 +90,11 @@ public class Interface {
 			serveur(); // On retourne au menu des serveurs
 		 }
 		// S'il y a assez de place alors on peut indiquer aux clients où se placer et attendre qu'ils commandent
-		System.out.print("Ils seront à/aux table(s)"+tables_client.get(0));
+		System.out.print("Ils seront à/aux table(s) "+tables_client.get(0).getNumero());
 		for (int i=1;i<tables_client.size();i++){
-			System.out.print(" et "+tables_client.get(i));
+			System.out.print(" et "+tables_client.get(i).getNumero());
 		}
+		System.out.println();
 		restaurant.addClient(new GroupeClient(nb_clients, tables_client)); // On ajoute les clients
 		serveur(); // Retour à l'écran serveur
 	}
@@ -118,15 +119,15 @@ public class Interface {
 		while(reponse.equals("oui")) {
 			// On affiche la carte pour que le serveur sélectionne le bon plat
 			for (int i=0;i<restaurant.getCarte().size();i++){
-				System.out.println("["+i+"] "+restaurant.getCarte().get(i).getNom()+" : "+
-				restaurant.getCarte().get(i).getPrix());
+				System.out.print("["+i+"] "+restaurant.getCarte().get(i).getNom()+" : "+
+				restaurant.getCarte().get(i).getPrix()+"$");
 				// On doit checker si le plat est faisable avec les stocks actuels
 				if(restaurant.getStock().checkDisponibilite(restaurant.getCarte().get(i))){
 					// Si on peut faire le plat
-					System.out.print(" (Disponible)");
+					System.out.println(" (Disponible)");
 				}
 				else{
-					System.out.print("Indisponible");
+					System.out.println("Indisponible");
 				}
 			}
 			System.out.print("Plat n° ");
