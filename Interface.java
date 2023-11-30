@@ -132,7 +132,7 @@ public class Interface {
 			}
 			System.out.print("Plat n° ");
 			int numPlat = scanner.nextInt(); // On prend le numéro du plat dans la liste
-			System.out.print(" x ");
+			System.out.print("	x ");
 			int quantitePlat = scanner.nextInt(); // Puis la quantité
 			commande.ajoutPlat(restaurant.getCarte().get(numPlat), quantitePlat); // On ajoute à la commande
 
@@ -144,6 +144,7 @@ public class Interface {
 		commande.recap();
 		restaurant.addCommande(commande); // On envoie la commande aux cuisiniers/barmans
 		restaurant.getStock().consommationStock(commande);
+		serveur();
 	}
 
 	// Ecran de récupération d'un commande (pour la livrer aux clients correspondants)
@@ -163,7 +164,8 @@ public class Interface {
 
 //-------------- Menu du barman -----------------------------------------------------------
 	public static void bar() {
-		
+		Barman barman = new Barman(null, null, 0, null);
+		barman.GestionDesCommandes(restaurant);
 	}
 
 //-------------- Menu du manager -----------------------------------------------------------

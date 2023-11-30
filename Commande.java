@@ -66,9 +66,9 @@ public class Commande {
 	}
 
 	void recap(){
-		System.out.println("Récapitulatif :\n");
+		System.out.println("Récapitulatif :");
 		for (Plat plat : liste.keySet()) {
-			  System.out.println("•"+plat.getNom()+" x"+liste.get(plat));
+			  System.out.println("-"+plat.getNom()+" x"+liste.get(plat));
 		}
 	}
 
