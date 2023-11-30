@@ -8,9 +8,7 @@ import java.io.BufferedOutputStream;
 import java.io.ObjectOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -69,12 +67,11 @@ public class Facture {
                 HashMap<Plat,Integer> tempo = c.getListe();
 			    out.writeObject(tempo);
             }
-                
-			System.out.println("C'est réussi");
+			System.out.println("Ecriture de la Facture réussit.");
 			out.close();
 		}
 		catch(IOException e){
-			System.out.println("Ya un problème" + e);
+			System.out.println("Problème détecté : " + e);
 		}
     }
 }
