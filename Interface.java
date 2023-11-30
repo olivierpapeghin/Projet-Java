@@ -177,9 +177,9 @@ public class Interface {
 		// On set le stock
 		restaurant.getStock().SetStockMax(30,60, 20, 40, 30, 35,35, 30,20, 30, 30, 30, 30);
 		// Puis les tables
-		restaurant.addTable(4);
-		restaurant.addTable(4);
-		restaurant.addTable(4);
+		restaurant.addTable(1,4);
+		restaurant.addTable(2,4);
+		restaurant.addTable(3,4);
 
 		// Puis les employés
 		// Le manager
