@@ -15,15 +15,18 @@ public class Barman extends Employe{
         System.out.println("Liste des commandes à faire :\n");
         int i=0;
         while(i<liste_commandes.size()){
-            System.out.println(" la commande numéro "+i+1+" contient:\n");
-            HashMap<Plat, Integer> liste_plats=liste_commandes.get(i).getListe();
-            for(Map.Entry<Plat, Integer> entry : liste_plats.entrySet()) {
-    			Plat plat = entry.getKey();
-    			Integer nbr_plat = entry.getValue();
-                if(plat.getType()=="boisson"){
-                    System.out.println(nbr_plat+" "+plat.getNom());
-                }
-			}
+            if(liste_commandes.get(i).getBoisson_prete()!=true){
+                System.out.println(" la commande numéro "+i+1+" contient:\n");
+                HashMap<Plat, Integer> liste_plats=liste_commandes.get(i).getListe();
+                for(Map.Entry<Plat, Integer> entry : liste_plats.entrySet()) {
+    			    Plat plat = entry.getKey();
+    			    Integer nbr_plat = entry.getValue();
+                    if(plat.getType()=="boisson" ){
+                     System.out.println(nbr_plat+" "+plat.getNom());
+                    }
+			    }
+
+            }
             i+=1;
         }
         System.out.println("indiquez le numéro de la commande faite, 0 pour sortir du menu\n");
