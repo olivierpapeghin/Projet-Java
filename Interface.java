@@ -97,8 +97,27 @@ public class Interface {
 
 //-------------- Menu du cuisinier -----------------------------------------------------------
 	public static void cuisine() {
-		
+		System.out.println("Quelle action souhaitez vous faire ?\n"
+				+ "1- Gestion des commandes\n"
+				+ "2- Retour");
+		int choixEcran = scanner.nextInt();
+		afficheEcranCuisinier(choixEcran);
 	}
+
+	public static void afficheEcranCuisinier(int choix){
+		switch(choix) {
+			case 1:
+				Cuisinier cuisinier = new Cuisinier(null, null, 0, null);
+				cuisinier.GestionDesCommandes(restaurant);
+				cuisine();
+				break;
+			case 2:
+				ecranGeneral();
+				break;
+		}
+	}
+		
+	
 
 //-------------- Menu du barman -----------------------------------------------------------
 	public static void bar() {

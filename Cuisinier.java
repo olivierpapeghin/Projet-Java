@@ -14,7 +14,11 @@ public class Cuisinier extends Employe{
         ArrayList<Commande> liste_commandes=restaurant.getCommandes();
         System.out.println("Liste des commandes à faire :\n");
         int i=0;
-        while(i<liste_commandes.size()){
+        if(liste_commandes.size()==0){
+            System.out.println("Il n'y a aucune commandes");
+        }
+        else{
+            while(i<liste_commandes.size()){
             if(liste_commandes.get(i).getPlat_pret()!=true){
                 System.out.println(" la commande numéro "+i+1+" contient:\n");
                 HashMap<Plat, Integer> liste_plats=liste_commandes.get(i).getListe();
@@ -29,17 +33,20 @@ public class Cuisinier extends Employe{
             }
             i+=1;
         }
-        System.out.println("indiquez le numéro de la commande faite, 0 pour sortir du menu\n");
+        System.out.println("indiquez le numéro de la commande faite\n");
         int choixCommande = scanner.nextInt();
-        if(choixCommande==0){
+        if(liste_commandes.get(choixCommande-1)==null){
+            // gestion des problèmes
             scanner.close();
-            
         }
         else{
             liste_commandes.get(choixCommande-1).setPlat_pret(true);
             GestionDesCommandes(restaurant);
         }
         scanner.close();
-        
+
+        }
+
+
     }
 }
