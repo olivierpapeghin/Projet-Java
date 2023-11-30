@@ -90,10 +90,11 @@ public class Interface {
 			serveur(); // On retourne au menu des serveurs
 		 }
 		// S'il y a assez de place alors on peut indiquer aux clients où se placer et attendre qu'ils commandent
-		System.out.print("Ils seront à/aux table(s)"+tables_client.get(0));
+		System.out.print("Ils seront à/aux table(s) "+tables_client.get(0).getNumero());
 		for (int i=1;i<tables_client.size();i++){
-			System.out.print(" et "+tables_client.get(i));
+			System.out.print(" et "+tables_client.get(i).getNumero());
 		}
+		System.out.println();
 		restaurant.addClient(new GroupeClient(nb_clients, tables_client)); // On ajoute les clients
 		serveur(); // Retour à l'écran serveur
 	}
@@ -118,20 +119,20 @@ public class Interface {
 		while(reponse.equals("oui")) {
 			// On affiche la carte pour que le serveur sélectionne le bon plat
 			for (int i=0;i<restaurant.getCarte().size();i++){
-				System.out.println("["+i+"] "+restaurant.getCarte().get(i).getNom()+" : "+
-				restaurant.getCarte().get(i).getPrix());
+				System.out.print("["+i+"] "+restaurant.getCarte().get(i).getNom()+" : "+
+				restaurant.getCarte().get(i).getPrix()+"$");
 				// On doit checker si le plat est faisable avec les stocks actuels
 				if(restaurant.getStock().checkDisponibilite(restaurant.getCarte().get(i))){
 					// Si on peut faire le plat
-					System.out.print(" (Disponible)");
+					System.out.println(" (Disponible)");
 				}
 				else{
-					System.out.print("Indisponible");
+					System.out.println("Indisponible");
 				}
 			}
 			System.out.print("Plat n° ");
 			int numPlat = scanner.nextInt(); // On prend le numéro du plat dans la liste
-			System.out.print(" x ");
+			System.out.print("	x ");
 			int quantitePlat = scanner.nextInt(); // Puis la quantité
 			commande.ajoutPlat(restaurant.getCarte().get(numPlat), quantitePlat); // On ajoute à la commande
 
@@ -143,6 +144,7 @@ public class Interface {
 		commande.recap();
 		restaurant.addCommande(commande); // On envoie la commande aux cuisiniers/barmans
 		restaurant.getStock().consommationStock(commande);
+		serveur();
 	}
 
 	// Ecran de récupération d'un commande (pour la livrer aux clients correspondants)
@@ -162,8 +164,26 @@ public class Interface {
 
 //-------------- Menu du barman -----------------------------------------------------------
 	public static void bar() {
-		
+		System.out.println("Quelle action souhaitez vous faire ?\n"
+				+ "1- Gestion des commandes\n"
+				+ "2- Retour");
+		int choixEcran = scanner.nextInt();
+		afficheEcranBarman(choixEcran);
 	}
+
+	public static void afficheEcranBarman(int choix){
+		switch(choix) {
+			case 1:
+				Barman barman = new Barman(null, null, 0, null);
+				barman.GestionDesCommandes(restaurant);
+				bar();
+				break;
+			case 2:
+				ecranGeneral();
+				break;
+		}
+	}
+
 
 //-------------- Menu du manager -----------------------------------------------------------
 	public static void monitoring() {
