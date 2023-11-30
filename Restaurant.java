@@ -53,8 +53,6 @@ public class Restaurant {
 		return carte;
 	}
 
-	// Setters
-
 	//Adders ( ajoute des objets au restaurant)
 	void addTable(int places){
 		int x=this.tables.get(this.tables.size()).getNumero();

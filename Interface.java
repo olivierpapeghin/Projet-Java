@@ -48,7 +48,8 @@ public class Interface {
 				+ "1- Accueillir des clients\n"
 				+ "2- Prendre une commande\n"
 				+ "3- Recupérer une commande\n"
-				+ "4- Donner l'addition\n");
+				+ "4- Donner l'addition\n"
+				+ "5- Retour");
 		int choixEcran = scanner.nextInt();
 		afficheEcranServeur(choixEcran);
 	}
@@ -68,6 +69,8 @@ public class Interface {
 			case 4:
 				addition();
 				break;
+			case 5:
+				ecranGeneral();
 		}
 	}
 
@@ -143,6 +146,10 @@ public class Interface {
 	}
 
 	// Ecran de récupération d'un commande (pour la livrer aux clients correspondants)
+	/*
+	 * On va transferer une des commandes en cours prête pour aller la livrer aux clients 
+	 * donc on va ajouter cette commande dans le groupe client
+	 */
 	public static void recupCommande(){}
 
 	// Ecran pour régler les commandes d'un groupe de clients
@@ -167,7 +174,11 @@ public class Interface {
 	public static void main(String[] args) {
 		// Initialisation du restaurant ici
 		Restaurant restaurant=new Restaurant();
+		// On set le stock
 		restaurant.getStock().SetStockMax(30,60, 20, 40, 30, 35,35, 30,20, 30, 30, 30, 30);
+		// Puis les tables
+		
+		
 		ecranGeneral();
 	}
 
