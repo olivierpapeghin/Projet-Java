@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.io.PrintWriter;
+import java.io.FileNotFoundException;
 
 public class Facture {
     private int nb_clients;
@@ -11,5 +13,30 @@ public class Facture {
         this.numero_table=numero_table;
         this.prix_total=prix_total;
         this.detail_commandes=detail_commandes;
+    }
+
+    public void Ecriture(){
+        PrintWriter fichier = null;
+		try {
+			fichier = new PrintWriter("facture.txt");
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+        try {
+            fichier.println("========== FACTURE =========="); //ajout option date/heure/numéro de facture ?
+            fichier.println("Nombre de clients : "+nb_clients);
+            fichier.println("Prix total : "+prix_total);
+            fichier.println("Detail de la commande : \n");
+            for(int indice_com = 0; indice_com < detail_commandes.size(); indice_com++){
+                for(int indice_list = 0; indice_list < detail_commandes.size(); indice_list++){
+                    fichier.println(detail_commandes.get(indice_com).getListe().get(indice_list));
+                }
+            }
+            System.out.println("Ecriture réussie !");
+        }
+        catch(Exception x) {
+            System.err.format("Exception : %s%n", x);
+            x.getStackTrace();
+        }
     }
 }
