@@ -134,7 +134,7 @@ public class Interface {
 		switch(choix) {
 			case 1:
 				Barman barman = new Barman(null, null, 0, null);
-				barman.GestionDesCommandes(restaurant);
+				barman.GestionDesCommandes(restaurant,scanner);
 				bar();
 				break;
 			case 2:
