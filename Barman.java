@@ -32,7 +32,7 @@ public class Barman extends Employe{
     		    Plat plat = entry.getKey();
     		    Integer nbr_plat = entry.getValue();
                 if(plat.getType()=="boisson" ){
-                 System.out.println("\n"+nbr_plat+" "+plat.getNom()+"\n");
+                 System.out.println(nbr_plat+" "+plat.getNom()+"\n");
                 }
 		    }
         if(liste_commandes.get(choixCommande-1)==null){
