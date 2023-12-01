@@ -101,14 +101,16 @@ public class Interface {
 				+ "1- Gestion des commandes\n"
 				+ "2- Retour");
 		int choixEcran = scanner.nextInt();
+		
 		afficheEcranCuisinier(choixEcran);
 	}
 
 	public static void afficheEcranCuisinier(int choix){
 		switch(choix) {
+			
 			case 1:
 				Cuisinier cuisinier = new Cuisinier(null, null, 0, null);
-				cuisinier.GestionDesCommandes(restaurant);
+				cuisinier.GestionDesCommandes(restaurant,scanner);
 				cuisine();
 				break;
 			case 2:
