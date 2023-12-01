@@ -19,11 +19,11 @@ public class Barman extends Employe{
         else{
             while(i<liste_commandes.size()){
             if(liste_commandes.get(i).getBoisson_prete()!=true){
-                System.out.println(" la commande numéro "+i+1+" \n");
+                System.out.println(" - Commande numéro "+i+1+" \n");
             }
             i+=1;
         }
-        System.out.println("indiquez le numéro de la commande a étudier\n");
+        System.out.println("Indiquez le numéro de la commande a étudier\n");
         int choixCommande = scanner.nextInt();
 
         
