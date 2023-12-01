@@ -120,82 +120,82 @@ public class Restaurant {
 		// chaque "partie" est une initialisation de plats
 		temp.put("tomate", 1);
 		temp.put("salade",1);
-		carte.add(new Plat("salade_tomate",9,temp,"plat"));
+		carte.add(new Plat("Salade de tomate",9,temp,"plat"));
 
 		temp.clear();
 		temp.put("salade", 1);
-		carte.add(new Plat("salade",9,temp,"plat"));
+		carte.add(new Plat("Salade",9,temp,"plat"));
 		
 		temp.clear();
 		temp.put("oignon",3);
-		carte.add(new Plat("soupe_oignon",8,temp,"plat"));
+		carte.add(new Plat("Soupe à l'oignon",8,temp,"plat"));
 
 		temp.clear();
 		temp.put("tomate",3);
-		carte.add(new Plat("soupe_tomate",8,temp,"plat"));
+		carte.add(new Plat("Soupe de tomate",8,temp,"plat"));
 
 		temp.clear();
 		temp.put("champignon",3);
-		carte.add(new Plat("soupe_champignons",8,temp,"plat"));
+		carte.add(new Plat("Soupe de champignons",8,temp,"plat"));
 
 		temp.clear();
 		temp.put("pain",1);
 		temp.put("viande",1);
 		temp.put("salade",1);
 		temp.put("tomate",1);
-		carte.add(new Plat("burger_salade_tomate",15,temp,"plat"));
+		carte.add(new Plat("Burger salade et tomate",15,temp,"plat"));
 
 		temp.clear();
 		temp.put("pain",1);
 		temp.put("viande",1);
 		temp.put("salade",1);
-		carte.add(new Plat("burger_salade",15,temp,"plat"));
+		carte.add(new Plat("Burger salade",15,temp,"plat"));
 
 		temp.clear();
 		temp.put("pain",1);
 		temp.put("viande",1);
-		carte.add(new Plat("burger",15,temp,"plat"));
+		carte.add(new Plat("Burger",15,temp,"plat"));
 
 		temp.clear();
 		temp.put("pate",1);
 		temp.put("tomate",1);
 		temp.put("fromage",1);
-		carte.add(new Plat("pizza",12,temp,"plat"));
+		carte.add(new Plat("Pizza",12,temp,"plat"));
 
 		temp.clear();
 		temp.put("pate",1);
 		temp.put("tomate",1);
 		temp.put("fromage",1);
 		temp.put("champignon",1);
-		carte.add(new Plat("pizza_champignon",12,temp,"plat"));		
+		carte.add(new Plat("Pizza aux champignons",12,temp,"plat"));		
 	
 		temp.clear();
 		temp.put("pate",1);
 		temp.put("tomate",1);
 		temp.put("fromage",1);
 		temp.put("pepperoni",1);
-		carte.add(new Plat("pizza_pepperoni",12,temp,"plat"));
+		carte.add(new Plat("Pizza aux pepperonis",12,temp,"plat"));
 
 		// setting de la carte des boissons
 		
 		temp.clear();
 		temp.put("limonade",1);
-		carte.add(new Plat("limonade",4,temp,"boisson"));
+		carte.add(new Plat("Limonade",4,temp,"boisson"));
 
 		temp.clear();
 		temp.put("cidre_doux",1);
-		carte.add(new Plat("cidre_doux",5,temp,"boisson"));
+		carte.add(new Plat("Cidre doux",5,temp,"boisson"));
 
 		temp.clear();
 		temp.put("biere",1);
-		carte.add(new Plat("biere",5,temp,"boisson"));
+		carte.add(new Plat("Bière",5,temp,"boisson"));
 
 		temp.clear();
 		temp.put("jus_de_fruit",1);
-		carte.add(new Plat("jus_de_fruit",1,temp,"boisson"));
+		carte.add(new Plat("Jus de fruits",1,temp,"boisson"));
 
 		temp.clear();
-		carte.add(new Plat("eau",0,temp,"boisson"));
+		carte.add(new Plat("Verre d'eau",0,temp,"boisson"));
 		
 	}
 	
