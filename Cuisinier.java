@@ -19,7 +19,7 @@ public class Cuisinier extends Employe{
         else{
             while(i<liste_commandes.size()){
             if(liste_commandes.get(i).getPlat_pret()!=true){
-                System.out.println(" - Commande numéro "+i+1+" \n");
+                System.out.println(" - Commande numéro "+(i+1)+" \n");
             }
             i+=1;
         }
@@ -32,7 +32,7 @@ public class Cuisinier extends Employe{
     		    Plat plat = entry.getKey();
     		    Integer nbr_plat = entry.getValue();
                 if(plat.getType()=="plat" ){
-                 System.out.println(nbr_plat+" "+plat.getNom()+"\n");
+                    System.out.println(nbr_plat+" "+plat.getNom()+"\n");
                 }
 		    }
         if(liste_commandes.get(choixCommande-1)==null){
