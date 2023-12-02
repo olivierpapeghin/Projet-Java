@@ -20,8 +20,8 @@ public class Barman extends Employe{
             while(i<liste_commandes.size()){
                 System.out.println(checkBoisson(liste_commandes));
                 
-                if(liste_commandes.get(i).getBoisson_prete()!=true){
-                System.out.println(" - Commande numéro "+(i+1)+" \n");
+                if(checkBoisson(liste_commandes.get(i))){
+                    System.out.println(" - Commande numéro "+(i+1)+" \n");
                 }
             i+=1;
             }
@@ -69,6 +69,15 @@ public class Barman extends Employe{
 		    }
 		}
         return(false);
-        
+    }
+
+    boolean checkBoisson(Commande commande){
+        for(Map.Entry<Plat, Integer> entry : commande.getListe().entrySet()) {
+    		    Plat plat = entry.getKey();
+                if(plat.getType()== "boisson" && commande.getBoisson_prete()==false){
+                    return(true);
+                }
+        }
+        return(false);
     }
 }
