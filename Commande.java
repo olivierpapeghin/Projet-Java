@@ -3,6 +3,8 @@ import java.util.HashMap;
 public class Commande {
 
 	private HashMap<Plat, Integer> liste;
+	private int table; // Le numéro de la table associée à la commande 
+					   //(si le groupe client est sur plusieurs tables on ne prend que la première)
 	private boolean boisson_prete;
 	private boolean plat_pret;
 	
@@ -27,6 +29,10 @@ public class Commande {
 	boolean getPlat_pret(){
 		return plat_pret;
 	}
+
+	int getTable(){
+		return table;
+	}
 	
 	// Setters
 	
@@ -40,6 +46,10 @@ public class Commande {
 
 	void setPlat_pret(boolean pret){
 		plat_pret=pret;
+	}
+
+	void setTable(int numTable){
+		table=numTable;
 	}
 
 	// Autre
@@ -66,7 +76,7 @@ public class Commande {
 	}
 
 	void recap(){
-		System.out.println("Récapitulatif :");
+		System.out.println("Récapitulatif pour la table "+table+" :");
 		for (Plat plat : liste.keySet()) {
 			  System.out.println("-"+plat.getNom()+" x"+liste.get(plat));
 		}
