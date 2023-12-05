@@ -39,7 +39,7 @@ public class Barman extends Employe{
                     if(plat.getType()== "boisson"){
                         System.out.println(nbr_plat+" "+plat.getNom()+"\n");
                     }
-		    }
+		        }
             System.out.println("La commande est elle validée ?(oui/non)\n");
             String rep = scanner.next();
         

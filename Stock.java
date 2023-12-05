@@ -60,7 +60,7 @@ public class Stock {
 		this.liste.replace(produit, this.liste.get(produit)+nbr);
 	}
 	
-	void fillStock() {// permet de copier la liste d'un autre stock
+	void fillStock() {// permet de remplir le stock
 		this.liste=this.liste_max;
 	}
 

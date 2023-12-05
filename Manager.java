@@ -1,9 +1,34 @@
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.Scanner;
 
 public class Manager extends Employe{
     
     Manager(String nom, String prenom, float salaire, ArrayList<String> edt){
         super(nom,prenom,salaire,edt);
+    }
+
+    // permet d'imprimer la liste de course et de remplir les stocks
+    void GestdionDesStocks(Restaurant restaurant,Scanner scanner){ 
+        System.out.println("---- Liste de Course \n\n");
+        Stock stock=restaurant.getStock();
+        int total=0;
+        for(Map.Entry<String, Integer> entry : stock.getListe().entrySet()) {
+    		        String ingredient = entry.getKey();
+    		        Integer nbr = entry.getValue();
+                    if((stock.getListe_max().get(ingredient)-nbr)!=0){
+                         System.out.println(" - "+(stock.getListe_max().get(ingredient)-nbr)
+                         +" : "+ingredient+"\n");
+                         total+=(stock.getListe_max().get(ingredient)-nbr);
+                    }
+	    }
+         System.out.println("\nNombre total d'ingredients a acheter : "+total +"\n");
+         System.out.println("\n Les courses ont elles été faites ?");
+         String rep = scanner.next();
+         if(rep=="oui"){
+            restaurant.getStock().fillStock();
+         }
+
     }
 
 
