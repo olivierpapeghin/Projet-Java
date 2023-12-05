@@ -154,7 +154,7 @@ public class Interface {
 		int choix = scanner.nextInt();
 
 
-		Serveur serveur = new Serveur(null, null, 0, null);
+		Manager manager = new Manager(null, null, 0, null);
 		switch(choix) {
 			case 1:
 				
@@ -163,14 +163,12 @@ public class Interface {
 				
 				break;
 			case 3:
-				
+				manager.GestdionDesStocks(restaurant, scanner);
 				break;
 			case 4:
-				
+				ecranGeneral();
 				break;
-			case 5:
-				
-				break;
+
 		}
 		}
 	
