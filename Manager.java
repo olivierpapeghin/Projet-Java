@@ -6,8 +6,11 @@ public class Manager extends Employe{
         super(nom,prenom,salaire,edt);
     }
 
+
     
 }
+
+
 
 
 //REFLEXION CYCLES JOURS/HEURES

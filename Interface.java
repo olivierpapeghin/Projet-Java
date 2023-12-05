@@ -146,8 +146,37 @@ public class Interface {
 
 //-------------- Menu du manager -----------------------------------------------------------
 	public static void monitoring() {
+
+		System.out.println("Quelle action souhaitez vous faire ?\n"
+				+ "1- Performances\n"
+				+ "2- Gérer les employés\n"
+				+ "3- Gestion des stocks\n"
+				+ "4- Retour");
+		int choix = scanner.nextInt();
+
+
+		Serveur serveur = new Serveur(null, null, 0, null);
+		switch(choix) {
+			case 1:
+				
+				break;
+			case 2:
+				
+				break;
+			case 3:
+				
+				break;
+			case 4:
+				
+				break;
+			case 5:
+				
+				break;
+		}
+		}
+	
 		
-	}
+	
 	
 
 	public static void main(String[] args) {
