@@ -150,7 +150,8 @@ public class Interface {
 				+ "1- Performances\n"
 				+ "2- Gérer les employés\n"
 				+ "3- Gestion des stocks\n"
-				+ "4- Retour");
+				+ "4- Fin de la journée"
+				+ "5- Retour");
 		int choix = scanner.nextInt();
 
 
@@ -167,6 +168,8 @@ public class Interface {
 				monitoring();
 				break;
 			case 4:
+			break;
+			case 5:
 				ecranGeneral();
 				break;
 
