@@ -164,6 +164,7 @@ public class Interface {
 				break;
 			case 3:
 				manager.GestdionDesStocks(restaurant, scanner);
+				monitoring();
 				break;
 			case 4:
 				ecranGeneral();
