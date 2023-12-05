@@ -50,8 +50,6 @@ public class Cuisinier extends Employe{
     }
 
         
-        
-
 
     }
 
@@ -59,8 +57,11 @@ public class Cuisinier extends Employe{
         for(Commande entry : liste_commandes) {
     		   for(Map.Entry<Plat, Integer> entry2 : entry.getListe().entrySet()) {
     		    Plat plat = entry2.getKey();
-                if(plat.getType()== "Plat" && entry.getPlat_pret()==false){
+                
+                if(plat.getType()== "plat" && entry.getPlat_pret()==false){
+                    
                     return(true);
+                    
                 }
 		    }
 		}
