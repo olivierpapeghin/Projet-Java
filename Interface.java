@@ -1,4 +1,3 @@
-import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -59,15 +58,15 @@ public class Interface {
 		Serveur serveur = new Serveur(null, null, 0, null);
 		switch(choix) {
 			case 1:
-				serveur.accueilClient(restaurant, scanner);
+				restaurant=serveur.accueilClient(restaurant, scanner);
 				serveur();
 				break;
 			case 2:
-				serveur.priseCommande(restaurant, scanner);
+				restaurant=serveur.priseCommande(restaurant, scanner);
 				serveur();
 				break;
 			case 3:
-				recupCommande();
+				restaurant=serveur.recupCommande(restaurant,scanner);
 				serveur();
 				break;
 			case 4:

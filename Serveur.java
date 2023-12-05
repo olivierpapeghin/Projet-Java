@@ -8,11 +8,12 @@ public class Serveur extends Employe{
     }
 
 
-    /*On prend le nombre de clients, puis on regarde s'il y a assez de place pour eux
+    /*
+	 * On prend le nombre de clients, puis on regarde s'il y a assez de place pour eux
 	 * si oui on leur assigne des tables (qui deviennent donc occupée)
 	 * sinon on ne peut pas les accueillir
 	 */
-    public void accueilClient(Restaurant restaurant, Scanner scanner){
+    public Restaurant accueilClient(Restaurant restaurant, Scanner scanner){
         System.out.println("\nCombien de clients y a-t-il ?");
         int nb_clients=scanner.nextInt();
         // On regarde s'il y a assez de tables pour accueillir les clients
@@ -30,6 +31,7 @@ public class Serveur extends Employe{
             System.out.println("\n");
             restaurant.addClient(new GroupeClient(nb_clients, tables_client)); // On ajoute les clients
         }
+		return restaurant;
     }
 
 
@@ -39,11 +41,12 @@ public class Serveur extends Employe{
 	 * Une fois confirmée la commande est envoyée dans les commandes en cours qui seront effectuées par les
 	 * cuisiniers et barmans
 	 */
-    public void priseCommande(Restaurant restaurant, Scanner scanner){
+    public Restaurant priseCommande(Restaurant restaurant, Scanner scanner){
         Commande commande = new Commande();
 		// On prend le numéro de table pour pouvoir retrouver les clients
 		System.out.println("\nQuel est le numéro de la table qui commande ?");
 		int numtable=scanner.nextInt();
+		commande.setTable(numtable);
 		// Maintenant on prend la commande
 		System.out.println("\nVeuillez entrer la commande : (Produit puis quantité)\n");
 		String reponse = "oui";
@@ -72,9 +75,56 @@ public class Serveur extends Employe{
 			reponse=scanner.next();
 		}
 		// On fait un récap de la commande
-		System.out.println("Pour la table "+numtable);
 		commande.recap();
 		restaurant.addCommande(commande); // On envoie la commande aux cuisiniers/barmans
 		restaurant.getStock().consommationStock(commande);
+		return restaurant;
     }
+
+	/*
+	 * On va regarder parmi les commandes lesquelles sont prêtes à être livrées
+	 * Le serveur va en choisir une, ce faisant on va la retirer des commandes actuelles du restaurant
+	 * pour l'ajouter dans les commandes du groupe client associé
+	 */
+	public Restaurant recupCommande(Restaurant restaurant,Scanner scanner){
+		// On récupère les commandes prêtes
+		ArrayList<Commande> commande_prete= new ArrayList<Commande>();
+		for(Commande commande : restaurant.getCommandes()){
+			if(commande.est_prete()){
+				commande_prete.add(commande);
+			}
+		}
+		// S'il existe des commandes prêtes
+		if(commande_prete.size()==0){
+
+		// On affiche les commandes prêtes au serveur
+		for(int i=0;i<commande_prete.size();i++){
+			System.out.println("["+i+"] Pour la table "+commande_prete.get(i).getTable());
+		}
+
+		// On attend la réponse du serveur
+		int reponse = scanner.nextInt();
+		Commande commande_choisie = commande_prete.get(reponse);
+
+		// Maintenant on va retrouver la commande dans celles en cours dans le restaurant pour l'enlever
+		for (int i=0; i<restaurant.getCommandes().size();i++){
+			if(restaurant.getCommandes().get(i)==commande_choisie){
+				restaurant.getCommandes().remove(i);
+			}
+		}
+
+		// Et ensuite la mettre dans le groupe client à la table correspondante à la commande
+		for (int ind_client=0; ind_client<restaurant.getClientsActuels().size();ind_client++){
+			for (int ind_table=0;ind_table<restaurant.getClientsActuels().get(ind_client).getTable().size();ind_table++){
+				if (commande_choisie.getTable()==restaurant.getClientsActuels().get(ind_client).getTable().get(ind_table).getNumero()){
+					restaurant.getClientsActuels().get(ind_client).nouvelleCommande(commande_choisie);
+				}
+			}
+		}
+		}
+		else{
+			System.out.println("Il n'y a aucune commande prête en ce moment");
+		}
+		return restaurant;
+	}
 }
