@@ -4,7 +4,25 @@ import java.util.Scanner;
 public class Interface {
 	// L'outil qui va permettre à l'utilisateur de communiquer des informations
 	static Scanner scanner = new Scanner(System.in); 
-	static Restaurant restaurant; // Le restaurant dans lequel on travaille 
+	static Restaurant restaurant; // Le restaurant dans lequel on travaille
+
+	/*
+	 * On va prendre la réponse de l'utilisateur jusqu'à ce qu'il donne un entier dans la bonne plage
+	 */
+	public static int enregistreInt(int min, int max){
+		int reponse=-1;
+		// Tant qu'on n'est pas dans la bonne plage
+		while(reponse>max || reponse<min){
+			try{ // On teste si la réponse de l'utilisateur est un entier
+				reponse=Integer.parseInt(scanner.next());
+			}
+			catch(Throwable e){ // S'il y a une erreur
+				System.out.println("Vous devez rentrer un entier compris entre "+min+" et "+max+".");
+				reponse=-1;
+			}
+		}
+		return reponse;
+	};
 
 //-------------- Menu général -----------------------------------------------------------
 	public static void ecranGeneral(){
@@ -13,7 +31,7 @@ public class Interface {
 				+ "2- Ecran cuisine\n"
 				+ "3- Ecran bar\n"
 				+ "4- Ecran Monitoring\n");
-		int choixEcran = scanner.nextInt();
+		int choixEcran = enregistreInt(1,5);
 		afficheEcranGeneral(choixEcran);
 	}
 
@@ -49,7 +67,7 @@ public class Interface {
 				+ "3- Recupérer une commande\n"
 				+ "4- Donner l'addition\n"
 				+ "5- Retour");
-		int choixEcran = scanner.nextInt();
+		int choixEcran = enregistreInt(1, 5);
 		afficheEcranServeur(choixEcran);
 	}
 
@@ -70,7 +88,7 @@ public class Interface {
 				serveur();
 				break;
 			case 4:
-				addition();
+				//addition();
 				serveur();
 				break;
 			case 5:
@@ -79,28 +97,12 @@ public class Interface {
 		}
 	}
 
-	//Ecran d'accueil d'un nouveau groupe de clients
-	public static void accueilClient(){
-		
-	}
-
-	// Ecran de récupération d'un commande (pour la livrer aux clients correspondants)
-	/*
-	 * On va transferer une des commandes en cours prête pour aller la livrer aux clients 
-	 * donc on va ajouter cette commande dans le groupe client
-	 */
-	public static void recupCommande(){}
-
-	// Ecran pour régler les commandes d'un groupe de clients
-	public static void addition(){}
-
 //-------------- Menu du cuisinier -----------------------------------------------------------
 	public static void cuisine() {
 		System.out.println("Quelle action souhaitez vous faire ?\n"
 				+ "1- Gestion des commandes\n"
 				+ "2- Retour");
-		int choixEcran = scanner.nextInt();
-		
+		int choixEcran = enregistreInt(1, 2);
 		afficheEcranCuisinier(choixEcran);
 	}
 
@@ -118,14 +120,13 @@ public class Interface {
 		}
 	}
 		
-	
 
 //-------------- Menu du barman -----------------------------------------------------------
 	public static void bar() {
 		System.out.println("Quelle action souhaitez vous faire ?\n"
 				+ "1- Gestion des commandes\n"
 				+ "2- Retour");
-		int choixEcran = scanner.nextInt();
+		int choixEcran = enregistreInt(1, 2);
 		afficheEcranBarman(choixEcran);
 	}
 
@@ -145,15 +146,13 @@ public class Interface {
 
 //-------------- Menu du manager -----------------------------------------------------------
 	public static void monitoring() {
-
 		System.out.println("Quelle action souhaitez vous faire ?\n"
 				+ "1- Performances\n"
 				+ "2- Gérer les employés\n"
 				+ "3- Gestion des stocks\n"
 				+ "4- Fin de la journée"
 				+ "5- Retour");
-		int choix = scanner.nextInt();
-
+		int choix = enregistreInt(1, 5);
 
 		Manager manager = new Manager(null, null, 0, null);
 		switch(choix) {
@@ -168,18 +167,14 @@ public class Interface {
 				monitoring();
 				break;
 			case 4:
-			break;
+				break;
 			case 5:
 				ecranGeneral();
 				break;
 
 		}
-		}
-	
+	}
 		
-	
-	
-
 	public static void main(String[] args) {
 		Interface affichage = new Interface();
 		// Initialisation du restaurant ici

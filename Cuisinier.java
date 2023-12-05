@@ -14,7 +14,7 @@ public class Cuisinier extends Employe{
         System.out.println("Liste des commandes à faire :\n");
         int i=0;
         if(liste_commandes.size()==0 || checkPlat(liste_commandes)==false){
-            System.out.println("Il n'y a aucune commandes\n");
+            System.out.println("Il n'y a aucune commande\n");
         }
         else{
             while(i<liste_commandes.size()){                
