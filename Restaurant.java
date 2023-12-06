@@ -96,7 +96,7 @@ public class Restaurant {
 			if(this.tables.get(i).getOccupe()==false){
 				tablesLibres.add(this.tables.get(i));
 				nbr_libre=nbr_libre+this.tables.get(i).getNb_places();
-				this.tables.get(i).setOccupe(true);
+				
 				if(nbr_libre>=nbr){
 					return tablesLibres;
 				}
@@ -105,6 +105,9 @@ public class Restaurant {
 		}
 		if(nbr_libre<nbr){
 			tablesLibres.clear();
+		}
+		for(Table entry : tablesLibres){
+			entry.setOccupe(true);
 		}
 		return tablesLibres;
 
