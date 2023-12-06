@@ -4,6 +4,8 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Cuisinier extends Employe{
+
+    FonctionsUtiles utiles = new FonctionsUtiles();
     
     Cuisinier(String nom, String prenom, float salaire, ArrayList<String> edt){
         super(nom,prenom,salaire,edt);
@@ -19,12 +21,12 @@ public class Cuisinier extends Employe{
         else{
             while(i<liste_commandes.size()){                
                 if(checkPlat(liste_commandes.get(i))){
-                    System.out.println(" - Commande numéro "+(i+1)+" \n");
+                    System.out.println("["+i+1+"] - Pour la table "+liste_commandes.get(i).getTable()+" \n");
                 }
             i+=1;
             }
             System.out.println("Indiquez le numéro de la commande a étudier\n");
-            int choixCommande = scanner.nextInt();
+            int choixCommande = utiles.enregistreInt(1, liste_commandes.size(), scanner);
             if(liste_commandes.get(choixCommande-1)==null){
                 System.out.println("Cette commande n'existe pas \n");
             }
@@ -37,7 +39,7 @@ public class Cuisinier extends Employe{
                         System.out.println(nbr_plat+" "+plat.getNom()+"\n");
                     }
 		    }
-            System.out.println("La commande est elle validée ?(oui/non)\n");
+            System.out.println("Valider la commande ?(oui/non)\n");
             String rep = scanner.next();
             if(rep=="non"){
             
