@@ -4,6 +4,8 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Barman extends Employe{
+
+    FonctionsUtiles utiles = new FonctionsUtiles();
     
     Barman(String nom, String prenom, float salaire, ArrayList<String> edt){
         super(nom,prenom,salaire,edt);
@@ -21,12 +23,12 @@ public class Barman extends Employe{
                 System.out.println(checkBoisson(liste_commandes));
                 
                 if(checkBoisson(liste_commandes.get(i))){
-                    System.out.println(" - Commande numéro "+(i+1)+" \n");
+                    System.out.println("["+i+1+"] - Pour la table "+liste_commandes.get(i).getTable()+" \n");
                 }
             i+=1;
             }
             System.out.println("Indiquez le numéro de la commande a étudier\n");
-            int choixCommande = scanner.nextInt();
+            int choixCommande = utiles.enregistreInt(1,liste_commandes.size(),scanner);
             if(liste_commandes.get(choixCommande-1)==null){
                 System.out.println("Cette commande n'existe pas \n");
             }
