@@ -42,13 +42,9 @@ public class Barman extends Employe{
 		        }
             System.out.println("La commande est elle validée ?(oui/non)\n");
             String rep = scanner.next();
-        
-            if(rep=="non"){
+            if(rep.equals("oui")){
             
-                GestionDesCommandes( restaurant, scanner);
-            }
-            else{
-                liste_commandes.get(choixCommande-1).setBoisson_prete(true);
+                liste_commandes.get(choixCommande-1).setPlat_pret(true);
             }
         }
     }

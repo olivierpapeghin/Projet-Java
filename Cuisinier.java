@@ -41,13 +41,11 @@ public class Cuisinier extends Employe{
 		    }
             System.out.println("Valider la commande ?(oui/non)\n");
             String rep = scanner.next();
-            if(rep=="non"){
+            if(rep.equals("oui")){
             
-                GestionDesCommandes( restaurant, scanner);
-            }
-            else{
                 liste_commandes.get(choixCommande-1).setPlat_pret(true);
             }
+
         }
     }
 
