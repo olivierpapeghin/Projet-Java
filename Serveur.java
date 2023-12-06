@@ -2,6 +2,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Serveur extends Employe{
+
+	FonctionsUtiles utiles = new FonctionsUtiles(); // Pour pouvoir utiliser les fonctions utiles
     
     Serveur(String nom, String prenom, float salaire, ArrayList<String> edt){
         super(nom,prenom,salaire,edt);
@@ -15,7 +17,8 @@ public class Serveur extends Employe{
 	 */
     public Restaurant accueilClient(Restaurant restaurant, Scanner scanner){
         System.out.println("\nCombien de clients y a-t-il ?");
-        int nb_clients=scanner.nextInt();
+        int nb_clients=utiles.enregistreInt(1, 20, scanner);
+
         // On regarde s'il y a assez de tables pour accueillir les clients
         ArrayList<Table> tables_client = restaurant.checkPlaces(nb_clients);
         if (tables_client.size()==0){
@@ -44,42 +47,64 @@ public class Serveur extends Employe{
     public Restaurant priseCommande(Restaurant restaurant, Scanner scanner){
         Commande commande = new Commande();
 		// On prend le numéro de table pour pouvoir retrouver les clients
-		System.out.println("\nQuel est le numéro de la table qui commande ?");
-		int numtable=scanner.nextInt();
-		commande.setTable(numtable);
-		// Maintenant on prend la commande
-		System.out.println("\nVeuillez entrer la commande : (Produit puis quantité)\n");
-		String reponse = "oui";
-		// On dit que tant que le serveur ne décide pas que c'est terminé on continue à ajouter des plats
-		while(reponse.equals("oui")) {
-			// On affiche la carte pour que le serveur sélectionne le bon plat
-			for (int i=0;i<restaurant.getCarte().size();i++){
-				System.out.print("["+i+"] "+restaurant.getCarte().get(i).getNom()+" : "+
-				restaurant.getCarte().get(i).getPrix()+"$");
-				// On doit checker si le plat est faisable avec les stocks actuels
-				if(restaurant.getStock().checkDisponibilite(restaurant.getCarte().get(i))){
-					// Si on peut faire le plat
-					System.out.println(" (Disponible)");
-				}
-				else{
-					System.out.println("Indisponible");
-				}
-			}
-			System.out.print("Plat n° ");
-			int numPlat = scanner.nextInt(); // On prend le numéro du plat dans la liste
-			System.out.print("	x ");
-			int quantitePlat = scanner.nextInt(); // Puis la quantité
-			commande.ajoutPlat(restaurant.getCarte().get(numPlat), quantitePlat); // On ajoute à la commande
 
-			System.out.println("Continuer ? (oui/non)");
-			reponse=scanner.next();
+		// On doit commencer par déterminer quelles tables sont occupées et peuvent donc commander
+		// On sait que les tables sont données dans l'ordre de la liste, on doit donc trouver la première table
+		// libre pour savoir où s'arrêter 
+		int max=0;
+		int indice_table=0;
+		while(max==0 || indice_table!=restaurant.getTables().size()){
+			if(restaurant.getTables().get(indice_table).occupe==false){ // Si on rencontre une table libre
+				max=indice_table; // On peut déduire que la liste des tables occupées s'arrête à cet indice
+			}
+			indice_table++; // On passe à la table suivante
 		}
-		// On fait un récap de la commande
-		commande.recap();
-		restaurant.addCommande(commande); // On envoie la commande aux cuisiniers/barmans
-		restaurant.getStock().consommationStock(commande);
+
+		if(restaurant.getClientsActuels().size()!=0){ // S'il y a des clients à servir
+			System.out.println("\nQuel est le numéro de la table qui commande ?");
+			int numtable=utiles.enregistreInt(1, max, scanner);
+			
+			commande.setTable(numtable);
+			// Maintenant on prend la commande
+			System.out.println("\nVeuillez entrer la commande : (Produit puis quantité)\n");
+			String reponse = "oui";
+			// On dit que tant que le serveur ne décide pas que c'est terminé on continue à ajouter des plats
+			while(reponse.equals("oui")) {
+				// On affiche la carte pour que le serveur sélectionne le bon plat
+				for (int i=0;i<restaurant.getCarte().size();i++){
+					System.out.print("["+i+"] "+restaurant.getCarte().get(i).getNom()+" : "+
+					restaurant.getCarte().get(i).getPrix()+"$");
+					// On doit checker si le plat est faisable avec les stocks actuels
+					if(restaurant.getStock().checkDisponibilite(restaurant.getCarte().get(i))){
+						// Si on peut faire le plat
+						System.out.println(" (Disponible)");
+					}
+					else{
+						System.out.println("Indisponible");
+					}
+				}
+				System.out.print("Plat n° ");
+				int numPlat = scanner.nextInt(); // On prend le numéro du plat dans la liste
+				System.out.print("	x ");
+				int quantitePlat = scanner.nextInt(); // Puis la quantité
+				commande.ajoutPlat(restaurant.getCarte().get(numPlat), quantitePlat); // On ajoute à la commande
+
+				System.out.println("Continuer ? (oui/non)");
+				reponse=scanner.next();
+			}
+			// On fait un récap de la commande
+			commande.recap();
+			restaurant.addCommande(commande); // On envoie la commande aux cuisiniers/barmans
+			restaurant.getStock().consommationStock(commande);
+		}
+		else{
+			System.out.println("Il n'y a pas de clients.");
+		}
 		return restaurant;
     }
+
+
+
 
 	/*
 	 * On va regarder parmi les commandes lesquelles sont prêtes à être livrées
@@ -103,7 +128,7 @@ public class Serveur extends Employe{
 		}
 
 		// On attend la réponse du serveur
-		int reponse = scanner.nextInt();
+		int reponse = utiles.enregistreInt(0,commande_prete.size(),scanner);
 		Commande commande_choisie = commande_prete.get(reponse);
 
 		// Maintenant on va retrouver la commande dans celles en cours dans le restaurant pour l'enlever
