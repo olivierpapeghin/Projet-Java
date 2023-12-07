@@ -225,6 +225,7 @@ public class Manager extends Employe{
                             jours=0;
                         }
                     }
+                    restaurant.getEmploye().get(i).setEdt(temp);
                     
                 }
                 i+=1;
