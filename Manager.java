@@ -30,21 +30,21 @@ public class Manager extends Employe{
          }
 
     }
-
+ // fonction permettant de supprimer et d'ajouter les employés
     void ajouterSupprimerEmployes(Restaurant restaurant,Scanner scanner){
         System.out.println("Voulez-vous supprimer où ajouter des employés\n");
         System.out.println("1 - ajouter // 2- Supprimer\n");
         int rep = scanner.nextInt();
-        if(rep==2){
+        if(rep==2){ // suppresion
             ArrayList<Employe> liste=restaurant.getEmploye();
-            for(Employe entry : liste) {
+            for(Employe entry : liste) { // on affiche la liste
                 System.out.println("Prenom :"+entry.getPrenom()+"Nom : "+entry.getNom()+ "Role : "+entry.getClass()+
                 "Salaire : "+entry.getSalaire()+"\n");
             }
             System.out.println("\n indiquez le nom de l'employé a enlever : ");
             String nom = scanner.next();
             int i=0;
-            for(Employe entry2 : liste) {
+            for(Employe entry2 : liste) { // on trouve l'employé ayant le nom demandé
                 if(nom.equals(entry2.getNom())){
                     restaurant.getEmploye().remove(i);
                 }
@@ -52,7 +52,8 @@ public class Manager extends Employe{
             }
 
         }
-        else{
+        else if(rep==1){ // ajout d'un employé
+            // on recupere les infos de l'employé
             System.out.println("\nNom de l'employés : ");
             String nom = scanner.next();
             System.out.println("\nPrenom de l'employés : ");
@@ -74,9 +75,12 @@ public class Manager extends Employe{
             else if(role.equals("manager")){
                 restaurant.addEmploye(new Serveur(nom, Prenom, salaire, edt));
             }
-            else{
+            else{ // securité
                 System.out.println("Ce que vous avez entré n'existe pas\n");
             }
+        }
+        else{// securité
+            System.out.println("Ce que vous avez entré n'existe pas\n");
         }
     }
 
