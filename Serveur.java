@@ -84,9 +84,9 @@ public class Serveur extends Employe{
 					}
 				}
 				System.out.print("Plat n° ");
-				int numPlat = scanner.nextInt(); // On prend le numéro du plat dans la liste
+				int numPlat = utiles.enregistreInt(0, 15, scanner); // On prend le numéro du plat dans la liste
 				System.out.print("	x ");
-				int quantitePlat = scanner.nextInt(); // Puis la quantité
+				int quantitePlat = utiles.enregistreInt(1, 100, scanner); // Puis la quantité
 				commande.ajoutPlat(restaurant.getCarte().get(numPlat), quantitePlat); // On ajoute à la commande
 
 				System.out.println("Continuer ? (oui/non)");
@@ -120,32 +120,35 @@ public class Serveur extends Employe{
 			}
 		}
 		// S'il existe des commandes prêtes
-		if(commande_prete.size()==0){
+		if(commande_prete.size()!=0){
 
-		// On affiche les commandes prêtes au serveur
-		for(int i=0;i<commande_prete.size();i++){
-			System.out.println("["+i+"] Pour la table "+commande_prete.get(i).getTable());
-		}
-
-		// On attend la réponse du serveur
-		int reponse = utiles.enregistreInt(0,commande_prete.size(),scanner);
-		Commande commande_choisie = commande_prete.get(reponse);
-
-		// Maintenant on va retrouver la commande dans celles en cours dans le restaurant pour l'enlever
-		for (int i=0; i<restaurant.getCommandes().size();i++){
-			if(restaurant.getCommandes().get(i)==commande_choisie){
-				restaurant.getCommandes().remove(i);
+			// On affiche les commandes prêtes au serveur
+			for(int i=0;i<commande_prete.size();i++){
+				System.out.println("["+i+"] Pour la table "+commande_prete.get(i).getTable());
 			}
-		}
 
-		// Et ensuite la mettre dans le groupe client à la table correspondante à la commande
-		for (int ind_client=0; ind_client<restaurant.getClientsActuels().size();ind_client++){
-			for (int ind_table=0;ind_table<restaurant.getClientsActuels().get(ind_client).getTable().size();ind_table++){
-				if (commande_choisie.getTable()==restaurant.getClientsActuels().get(ind_client).getTable().get(ind_table).getNumero()){
-					restaurant.getClientsActuels().get(ind_client).nouvelleCommande(commande_choisie);
+			// On attend la réponse du serveur
+			int reponse = utiles.enregistreInt(0,commande_prete.size(),scanner);
+			Commande commande_choisie = commande_prete.get(reponse);
+
+			// Maintenant on va retrouver la commande dans celles en cours dans le restaurant pour l'enlever
+			for (int i=0; i<restaurant.getCommandes().size();i++){
+				if(restaurant.getCommandes().get(i)==commande_choisie){
+					restaurant.getCommandes().remove(i);
 				}
 			}
-		}
+
+			// Et ensuite la mettre dans le groupe client de la table correspondante à la commande
+			for (int ind_client=0; ind_client<restaurant.getClientsActuels().size();ind_client++){
+				for (int ind_table=0;ind_table<restaurant.getClientsActuels().get(ind_client).getTable().size();ind_table++){
+					if (commande_choisie.getTable()==restaurant.getClientsActuels().get(ind_client).getTable().get(ind_table).getNumero()){
+						restaurant.getClientsActuels().get(ind_client).nouvelleCommande(commande_choisie);
+					}
+				}
+			}
+			System.out.println("Commande livrée");
+			// Enfin pour les performances on ajoute 1 aux commandes finies
+			restaurant.addCommandeFinie();
 		}
 		else{
 			System.out.println("Il n'y a aucune commande prête en ce moment");

@@ -11,6 +11,7 @@ public class Restaurant {
 	private ArrayList<Facture> listeFacture = new ArrayList<Facture>();
 	private static ArrayList<Plat> carte = new ArrayList<Plat>();
 	private ArrayList<Commande> commandeEnCours = new ArrayList<Commande>();
+	private int nb_commandes_finies;
 	
 	Restaurant(){
 		
@@ -19,8 +20,7 @@ public class Restaurant {
 
 		// initialisation des variables de base
 		jour=1;
-
-		//Creation des employés de base
+		nb_commandes_finies=0;
 	}
 
 	// Getter
@@ -57,6 +57,10 @@ public class Restaurant {
 		return this.commandeEnCours;
 	}
 
+	int getNb_commandes_finies(){
+		return this.nb_commandes_finies;
+	}
+
 	//Adders ( ajoute des objets au restaurant)
 	void addTable(int num, int places){
 		tables.add(new Table(num, places));
@@ -72,6 +76,10 @@ public class Restaurant {
 
 	void addEmploye(Employe employe){
 		this.employes.add(employe);
+	}
+
+	void addCommandeFinie(){
+		this.nb_commandes_finies++;
 	}
 
 	//Autres

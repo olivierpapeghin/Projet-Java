@@ -21,7 +21,7 @@ public class Cuisinier extends Employe{
         else{
             while(i<liste_commandes.size()){                
                 if(checkPlat(liste_commandes.get(i))){
-                    System.out.println("["+i+1+"] - Pour la table "+liste_commandes.get(i).getTable()+" \n");
+                    System.out.println("["+(i+1)+"] - Pour la table "+liste_commandes.get(i).getTable()+" \n");
                 }
             i+=1;
             }
