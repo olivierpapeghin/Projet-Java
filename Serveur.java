@@ -4,8 +4,6 @@ import java.util.Scanner;
 
 public class Serveur extends Employe{
 
-	FonctionsUtiles utiles = new FonctionsUtiles(); // Pour pouvoir utiliser les fonctions utiles
-    
     Serveur(String nom, String prenom, float salaire, ArrayList<String> edt){
         super(nom,prenom,salaire,edt);
     }
@@ -69,8 +67,10 @@ public class Serveur extends Employe{
 			// Maintenant on prend la commande
 			System.out.println("\nVeuillez entrer la commande : (Produit puis quantité)\n");
 			String reponse = "oui";
+
 			// On dit que tant que le serveur ne décide pas que c'est terminé on continue à ajouter des plats
 			while(reponse.equals("oui")) {
+
 				// On affiche la carte pour que le serveur sélectionne le bon plat
 				for (int i=0;i<restaurant.getCarte().size();i++){
 					System.out.print("["+i+"] "+restaurant.getCarte().get(i).getNom()+" : "+

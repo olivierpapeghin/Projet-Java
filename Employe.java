@@ -6,6 +6,8 @@ public class Employe {
     private String prenom;
     private float salaire;
     private ArrayList<String> edt;
+
+    FonctionsUtiles utiles = new FonctionsUtiles(); // Pour pouvoir utiliser les fonctions utiles
     
     Employe(String nom, String prenom, float salaire, ArrayList<String> edt){
         this.nom=nom;

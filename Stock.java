@@ -61,7 +61,11 @@ public class Stock {
 	}
 	
 	void fillStock() {// permet de remplir le stock
-		this.liste=this.liste_max;
+		// On ne peut pas mettre un simple = a cause des problèmes de mutabilités
+		liste.clear();
+		for(String ingredient : liste_max.keySet()){
+			liste.put(ingredient,liste_max.get(ingredient));
+		}
 	}
 
 	// Permet de checker si un plat est faisable avec les ingredients disponibles
@@ -77,13 +81,15 @@ public class Stock {
 		return(true);
 	}
 
-	// Diminue le stock une fois le plat préparé
+	// Diminue le stock une fois le plat commandé
 	void consommationStock(Commande commande){
 		HashMap<Plat, Integer> liste = commande.getListe();
+
 		for(Map.Entry<Plat, Integer> entry : liste.entrySet()) {
     		Plat plats = entry.getKey();
     		Integer nbr_plat = entry.getValue();
 			HashMap<String, Integer> compo = plats.getComposition();
+
 			for(Map.Entry<String, Integer> entry2 : compo.entrySet()) {
     			String ingredient = entry2.getKey();
     			Integer nbr_ingredient = entry.getValue();

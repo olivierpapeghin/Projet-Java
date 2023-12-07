@@ -10,20 +10,22 @@ public class Manager extends Employe{
 
     // permet d'imprimer la liste de course et de remplir les stocks
     void GestionDesStocks(Restaurant restaurant,Scanner scanner){ 
-        System.out.println("---- Liste de Course \n\n");
+        System.out.println("\n\n---- Liste de Course ---- \n");
         Stock stock=restaurant.getStock();
         int total=0;
+
         for(Map.Entry<String, Integer> entry : stock.getListe().entrySet()) {
     		        String ingredient = entry.getKey();
     		        Integer nbr = entry.getValue();
+
                     if((stock.getListe_max().get(ingredient)-nbr)!=0){
-                         System.out.println(" - "+(stock.getListe_max().get(ingredient)-nbr)
-                         +" : "+ingredient+"\n");
+                         System.out.println(" - "+ingredient
+                         +" x "+(stock.getListe_max().get(ingredient)-nbr));
                          total+=(stock.getListe_max().get(ingredient)-nbr);
                     }
 	    }
-         System.out.println("\nNombre total d'ingredients a acheter : "+total +"\n");
-         System.out.println("\n Les courses ont elles été faites ?");
+         System.out.println("\nNombre total d'ingrédients à acheter : "+total +"\n");
+         System.out.println("\nLes courses ont elles été faites ?");
          String rep = scanner.next();
          if(rep.equals("oui")){
             restaurant.getStock().fillStock();
@@ -33,8 +35,8 @@ public class Manager extends Employe{
 
     void ajouterSupprimerEmployes(Restaurant restaurant,Scanner scanner){
         System.out.println("Voulez-vous supprimer où ajouter des employés\n");
-        System.out.println("1 - ajouter // 2- Supprimer\n");
-        int rep = scanner.nextInt();
+        System.out.println("[1] - Ajouter \n[2]- Supprimer\n");
+        int rep = utiles.enregistreInt(1, 2, scanner); 
         if(rep==2){
             ArrayList<Employe> liste=restaurant.getEmploye();
             for(Employe entry : liste) {
@@ -124,35 +126,123 @@ public class Manager extends Employe{
         }
     }
 
+    void GestionEDT(Restaurant restaurant,Scanner scanner){
+        ArrayList<Employe> liste=restaurant.getEmploye();
+        for(Employe entry : liste) {
+            System.out.println("Prenom :"+entry.getPrenom()+"Nom : "+entry.getNom()+ "Role : "+entry.getClass()+
+            "Salaire : "+entry.getSalaire()+"\n");
+            System.out.println("\n indiquez le nom de l'employé a modifier : ");
+            String nom = scanner.next();
+            int i=0;
+            for(Employe entry2 : liste) {
+                if(nom.equals(entry2.getNom())){
+                    System.out.println("\n Faire travailler le Lundi ? (oui/non)");
+                    String rep = scanner.next();
+                    ArrayList<String> temp =new ArrayList<String>();
+                    int jours=0; // variable qui suit les jours de travail d'affilés
+                    if(rep.equals("oui")){
+                        temp.add("Lundi");
+                        jours+=1;
+                    }
+                    else{
+                        if(entry2.getClass()!=new Manager(null, null, 0, null).getClass()){
+                            jours=0;
+                        }
+                    }
+                    System.out.println("\n Faire travailler le Mardi ? (oui/non)");
+                    rep = scanner.next();
+                    if(rep.equals("oui")){
+                        temp.add("Mardi");
+                        jours+=1;
+                    }
+                    else{
+                        if(entry2.getClass()!=new Manager(null, null, 0, null).getClass()){
+                            jours=0;
+                        }
+                    }
+                    System.out.println("\n Faire travailler le Mercredi ? (oui/non)");
+                    rep = scanner.next();
+                    if(rep.equals("oui")){
+                        if(jours==2){
+                            System.out.println("\n Vous ne pouvez pas assigner ce jour");
+                        }
+                        else{
+                            temp.add("Mercredi");
+                            jours+=1;
+                        }
+                        
+                    }
+                    else{
+                        if(entry2.getClass()!=new Manager(null, null, 0, null).getClass()){
+                            jours=0;
+                        }
+                    }
+                    System.out.println("\n Faire travailler le Jeudi ? (oui/non)");
+                    rep = scanner.next();
+                    if(rep.equals("oui")){
+                        if(jours==2){
+                            System.out.println("\n Vous ne pouvez pas assigner ce jour");
+                        }
+                        else{
+                            temp.add("Jeudi");
+                            jours+=1;
+                        }
+                    }
+                    else{
+                        if(entry2.getClass()!=new Manager(null, null, 0, null).getClass()){
+                            jours=0;
+                        }
+                    }
+                    System.out.println("\n Faire travailler le Vendredi ? (oui/non)");
+                    rep = scanner.next();
+                    if(rep.equals("oui")){
+                        if(jours==2){
+                            System.out.println("\n Vous ne pouvez pas assigner ce jour");
+                        }
+                        else{
+                            temp.add("Vendredi");
+                            jours+=1;
+                        }
+                    }
+                    else{
+                        if(entry2.getClass()!=new Manager(null, null, 0, null).getClass()){
+                            jours=0;
+                        }
+                    }
+                    System.out.println("\n Faire travailler le Samedi ? (oui/non)");
+                    rep = scanner.next();
+                    if(rep.equals("oui")){
+                        if(jours==2){
+                            System.out.println("\n Vous ne pouvez pas assigner ce jour");
+                        }
+                        else{
+                            temp.add("Samedi");
+                            jours+=1;
+                        }
+                    }
+                    else{
+                        if(entry2.getClass()!=new Manager(null, null, 0, null).getClass()){
+                            jours=0;
+                        }
+                    }
+                    restaurant.getEmploye().get(i).setEdt(temp);
+                    
+                }
+                i+=1;
+            }
+        }
+    }
+
+    
+
     /*
      * On va afficher au manager les performances du restaurant aujourd'hui
      */
     void performances(Restaurant restaurant, Scanner scanner){
-        System.out.println("Performances du jour :\n\n"+
-        "- Nombre de clients actuel : "+restaurant.getClientsActuels().size()+
+        System.out.println("Performances du jour ("+restaurant.getJour()+") :\n\n"+
+        "- Nombre de groupes de clients actuel : "+restaurant.getClientsActuels().size()+
         "\n- Nombre de commandes en cours : "+restaurant.getCommandes().size()+
         "\n- Nombre de commandes terminées : "+restaurant.getNb_commandes_finies()+"\n");
     }
-
     
 }
-
-
-
-
-
-
-//REFLEXION CYCLES JOURS/HEURES
-/*
-heures ouverture fermeture : A DEFINIR
-jours d'ouverture : 6/7 du lundi au samedi
-
-idée : chaque groupe de client a une durée de consommation (fixe ou random ?)
-       à chaque fois que le serveur finit la transaction des clients, l'heure de la journée augmente
-       si l'heure est supérieur à H-1, on n'accepte plus personne
-ex : un groupe de 2-4 prendra 1h à 2h, un groupe de 6-8 2h à 3h
-
-
-
-
- */

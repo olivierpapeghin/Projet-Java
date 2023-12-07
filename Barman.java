@@ -5,8 +5,6 @@ import java.util.Scanner;
 
 public class Barman extends Employe{
 
-    FonctionsUtiles utiles = new FonctionsUtiles();
-    
     Barman(String nom, String prenom, float salaire, ArrayList<String> edt){
         super(nom,prenom,salaire,edt);
     }
