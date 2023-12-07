@@ -9,7 +9,7 @@ public class Interface {
 
 //-------------- Menu général -----------------------------------------------------------
 	public static void ecranGeneral(){
-		System.out.println("Quel écran souhaitez vous afficher ?\n"
+		System.out.println("\nQuel écran souhaitez vous afficher ?\n"
 				+ "1- Ecran Serveur\n"
 				+ "2- Ecran cuisine\n"
 				+ "3- Ecran bar\n"

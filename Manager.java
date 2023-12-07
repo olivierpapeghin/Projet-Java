@@ -128,10 +128,10 @@ public class Manager extends Employe{
      * On va afficher au manager les performances du restaurant aujourd'hui
      */
     void performances(Restaurant restaurant, Scanner scanner){
-        System.out.println("Performances du jour :\n"+
-        "Nombre de clients actuel : "+restaurant.getClientsActuels().size()+
-        "\nNombre de commandes en cours : "+restaurant.getCommandes().size()+
-        "\nNombre de commandes terminées : "+restaurant.getNb_commandes_finies());
+        System.out.println("Performances du jour :\n\n"+
+        "- Nombre de clients actuel : "+restaurant.getClientsActuels().size()+
+        "\n- Nombre de commandes en cours : "+restaurant.getCommandes().size()+
+        "\n- Nombre de commandes terminées : "+restaurant.getNb_commandes_finies()+"\n");
     }
 
     
