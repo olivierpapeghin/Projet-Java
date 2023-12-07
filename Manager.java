@@ -25,15 +25,65 @@ public class Manager extends Employe{
          System.out.println("\nNombre total d'ingredients a acheter : "+total +"\n");
          System.out.println("\n Les courses ont elles été faites ?");
          String rep = scanner.next();
-         if(rep=="oui"){
+         if(rep.equals("oui")){
             restaurant.getStock().fillStock();
          }
 
     }
 
+    void ajouterSupprimerEmployes(Restaurant restaurant,Scanner scanner){
+        System.out.println("Voulez-vous supprimer où ajouter des employés\n");
+        System.out.println("1 - ajouter // 2- Supprimer\n");
+        int rep = scanner.nextInt();
+        if(rep==2){
+            ArrayList<Employe> liste=restaurant.getEmploye();
+            for(Employe entry : liste) {
+                System.out.println("Prenom :"+entry.getPrenom()+"Nom : "+entry.getNom()+ "Role : "+entry.getClass()+
+                "Salaire : "+entry.getSalaire()+"\n");
+            }
+            System.out.println("\n indiquez le nom de l'employé a enlever : ");
+            String nom = scanner.next();
+            int i=0;
+            for(Employe entry2 : liste) {
+                if(nom.equals(entry2.getNom())){
+                    restaurant.getEmploye().remove(i);
+                }
+                i+=1;
+            }
+
+        }
+        else{
+            System.out.println("\nNom de l'employés : ");
+            String nom = scanner.next();
+            System.out.println("\nPrenom de l'employés : ");
+            String Prenom= scanner.next();
+            System.out.println("\nSalaire de l'employés : ");
+            float salaire= scanner.nextFloat();
+            System.out.println("\nRole de l'employés : \n");
+            String role= scanner.next(); 
+            ArrayList<String> edt=new ArrayList<String>();
+            if(role.equals("barman")){ // pas de switch case pour utiliser equals
+                restaurant.addEmploye(new Barman(nom, Prenom, salaire, edt));
+            }
+            else if(role.equals("cuisinier")){
+                restaurant.addEmploye(new Cuisinier(nom, Prenom, salaire, edt));
+            }
+            else if(role.equals("serveur")){
+                restaurant.addEmploye(new Serveur(nom, Prenom, salaire, edt));
+            }
+            else if(role.equals("manager")){
+                restaurant.addEmploye(new Serveur(nom, Prenom, salaire, edt));
+            }
+            else{
+                System.out.println("Ce que vous avez entré n'existe pas\n");
+            }
+        }
+    }
 
     
 }
+
+
 
 
 
