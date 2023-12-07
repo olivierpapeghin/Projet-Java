@@ -173,7 +173,7 @@ public class Serveur extends Employe{
 			indice_table++; // On passe à la table suivante
 		}
 
-		if(restaurant.getClientsActuels().size()!=0){ // S'il y a des clients à servir
+		if(restaurant.getClientsActuels().size()!=0){ // S'il y a des clients prêts pour payer
 			System.out.println("\nQuel est le numéro de la table qui réclame l'addition ?");
 			int numtable=utiles.enregistreInt(1, max, scanner);
 
