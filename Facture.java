@@ -15,13 +15,13 @@ import java.util.HashMap;
 
 public class Facture {
     private int nb_clients;
-    private int numero_table;
+    //private int numero_table;
     private int prix_total;
     private ArrayList<Commande> detail_commandes;
 
-    Facture(int nb_clients, int numero_table, int prix_total, ArrayList<Commande> detail_commandes){
+    Facture(int nb_clients, /*int numero_table,*/ int prix_total, ArrayList<Commande> detail_commandes){
         this.nb_clients=nb_clients;
-        this.numero_table=numero_table;
+        //this.numero_table=numero_table;
         this.prix_total=prix_total;
         this.detail_commandes=detail_commandes;
     }
@@ -61,7 +61,7 @@ public class Facture {
 		{
 			out.writeObject(LocalDate.now());
 			out.writeInt(nb_clients);
-			out.writeInt(numero_table);
+			//out.writeInt(numero_table);
             out.writeInt(prix_total);
             System.out.println("Résumé de la commande :\n");
             for(Commande c : detail_commandes){

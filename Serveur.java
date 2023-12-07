@@ -171,9 +171,55 @@ public class Serveur extends Employe{
 			}
 			indice_table++; // On passe à la table suivante
 		}
+
 		
-		System.out.println("\nQuel est le numéro de la table qui commande ?");
-		int numtable=utiles.enregistreInt(1, max, scanner);
+
+		if(restaurant.getClientsActuels().size()!=0){ // S'il y a des clients prêts pour payer
+			System.out.println("\nQuel est le numéro de la table qui réclame l'addition ?");
+			int numtable=utiles.enregistreInt(1, max, scanner);
+
+			ArrayList<Commande> comEnCours = new ArrayList<Commande>();
+			comEnCours = restaurant.getCommandes();
+
+			boolean rien_en_cours = true;
+			for(Commande comm : comEnCours){
+				if(comm.getTable() == numtable){
+					rien_en_cours = false;
+				}
+			}
+
+			if(rien_en_cours == true){
+				//je crée une liste groupeclient pour le foreach
+				ArrayList<GroupeClient> clients = new ArrayList<GroupeClient>();
+				clients = restaurant.getClientsActuels();
+				//je crée une liste table pour le foreach
+				ArrayList<Table> tables = new ArrayList<Table>();
+				boolean fact_ecrite = false;
+				int prix_tot = 0;
+				Facture facture;
+
+				for(GroupeClient c : clients){
+					tables = c.getTable(); //je récupère la table du groupeclient
+					for(Table t : tables){
+						if(t.getNumero() == numtable && fact_ecrite == false){ //je vérifie si c'est bien la table que je recherche
+							for(Commande com : c.getCommandes()){
+								prix_tot += com.prixTotal();
+							}
+							facture = new Facture(c.getClients(), /*numtable,*/ prix_tot, c.getCommandes());
+							facture.Ecriture();
+							restaurant.addFacture(facture);
+							fact_ecrite = true;
+						}
+					}
+				}
+			}
+			else{
+				System.out.println("Certains clients n'ont pas encore reçu leur commande");
+			}
+		}
+		else{
+			System.out.println("Il n'y a pas de clients.");
+		}
 
 
 		return restaurant;

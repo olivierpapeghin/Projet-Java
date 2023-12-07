@@ -222,8 +222,8 @@ public class Restaurant {
 		carte.add(new Plat("Limonade",4,compo12,"boisson"));
 
 		HashMap<String, Integer> compo13 =new HashMap<String, Integer>(); 
-		compo13.put("cidre_doux",1);
-		carte.add(new Plat("Cidre doux",5,compo3,"boisson"));
+		compo13.put("cidre_brut",1);
+		carte.add(new Plat("Cidre brut",5,compo3,"boisson"));
 
 		HashMap<String, Integer> compo14 =new HashMap<String, Integer>(); 
 		compo14.put("biere",1);

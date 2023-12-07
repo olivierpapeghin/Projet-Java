@@ -10,6 +10,7 @@ public class Table {
 		this.occupe=false; // si des clients sont à la table
 	}
 	
+	
 	// Setters
 
 	void setNumero(int num){
@@ -23,6 +24,7 @@ public class Table {
 	void setOccupe(boolean occup){
 		occupe=occup;
 	}
+
 
 	// Getters
 
