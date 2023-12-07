@@ -9,7 +9,7 @@ public class Manager extends Employe{
     }
 
     // permet d'imprimer la liste de course et de remplir les stocks
-    void GestdionDesStocks(Restaurant restaurant,Scanner scanner){ 
+    void GestionDesStocks(Restaurant restaurant,Scanner scanner){ 
         System.out.println("---- Liste de Course \n\n");
         Stock stock=restaurant.getStock();
         int total=0;

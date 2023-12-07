@@ -75,7 +75,6 @@ public class Interface {
 				serveur();
 				break;
 			case 5:
-				ecranGeneral();
 				break;
 		}
 	}
@@ -98,7 +97,6 @@ public class Interface {
 				cuisine();
 				break;
 			case 2:
-				ecranGeneral();
 				break;
 		}
 	}
@@ -121,7 +119,6 @@ public class Interface {
 				bar();
 				break;
 			case 2:
-				ecranGeneral();
 				break;
 		}
 	}
@@ -131,30 +128,35 @@ public class Interface {
 	public static void monitoring() {
 		System.out.println("Quelle action souhaitez vous faire ?\n"
 				+ "1- Performances\n"
-				+ "2- Gérer les employés\n"
+				+ "2- Ajouter/Supprimer des employés\n"
+				+ "3- Gérer les emplois du temps de la semaine\n"
 				+ "3- Gestion des stocks\n"
-				+ "4- Fin de la journée"
-				+ "5- Retour");
-		int choix = utiles.enregistreInt(1, 5,scanner);
+				+ "5- Fin de la journée\n"
+				+ "6- Retour");
+		int choix = utiles.enregistreInt(1, 6,scanner);
 
 		Manager manager = new Manager(null, null, 0, null);
 		switch(choix) {
 			case 1:
-				
-				break;
-			case 2:
-				
-				break;
-			case 3:
-				manager.GestdionDesStocks(restaurant, scanner);
+				manager.performances(restaurant, scanner);
 				monitoring();
 				break;
+			case 2:
+				manager.ajouterSupprimerEmployes(restaurant, scanner);
+				monitoring();
+				break;
+			case 3:
+				// Gestion edt
+				break;
 			case 4:
+				manager.GestionDesStocks(restaurant, scanner);
+				monitoring();
 				break;
 			case 5:
-				ecranGeneral();
+				manager.finDeJournee(restaurant, scanner);
 				break;
-
+			case 6:
+				break;
 		}
 	}
 		
@@ -197,7 +199,9 @@ public class Interface {
 		restaurant.addEmploye(new Serveur("Yataghene","Lydia",1300,edt));
 		affichage.restaurant=restaurant;
 		
-		ecranGeneral();
+		while (true) {
+			ecranGeneral();
+		}
 	}
 
 }
