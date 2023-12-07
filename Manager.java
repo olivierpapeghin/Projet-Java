@@ -39,6 +39,7 @@ public class Manager extends Employe{
         int rep = utiles.enregistreInt(1, 2, scanner); 
         if(rep==2){
             ArrayList<Employe> liste=restaurant.getEmploye();
+
             for(int id_employe=0;id_employe<liste.size();id_employe++) {
                 System.out.print("["+id_employe+"] - ");
                 liste.get(id_employe).info();
@@ -122,9 +123,9 @@ public class Manager extends Employe{
 
     void GestionEDT(Restaurant restaurant,Scanner scanner){
         ArrayList<Employe> liste=restaurant.getEmploye();
-        for(Employe entry : liste) {
-            System.out.println("Prenom :"+entry.getPrenom()+"Nom : "+entry.getNom()+ "Role : "+entry.getClass()+
-            "Salaire : "+entry.getSalaire()+"\n");
+        for(int id_employe=0;id_employe<liste.size();id_employe++) {
+            System.out.print("["+id_employe+"] - ");
+            liste.get(id_employe).info();
             System.out.println("\n indiquez le nom de l'employé a modifier : ");
             String nom = scanner.next();
             int i=0;

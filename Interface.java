@@ -147,7 +147,7 @@ public class Interface {
 				monitoring();
 				break;
 			case 3:
-				// Gestion edt
+				manager.GestionEDT(restaurant, scanner);
 				break;
 			case 4:
 				manager.GestionDesStocks(restaurant, scanner);
