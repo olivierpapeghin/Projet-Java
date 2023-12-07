@@ -52,7 +52,8 @@ public class Manager extends Employe{
             }
 
         }
-        else{
+        else if(rep==1){ // ajout d'un employé
+            // on recupere les infos de l'employé
             System.out.println("\nNom de l'employé : ");
             String nom = scanner.next();
             System.out.println("\nPrenom de l'employé : ");
@@ -74,9 +75,12 @@ public class Manager extends Employe{
             else if(role.equals("manager")){
                 restaurant.addEmploye(new Serveur(nom, Prenom, salaire, edt));
             }
-            else{
+            else{ // securité
                 System.out.println("Ce que vous avez entré n'existe pas\n");
             }
+        }
+        else{// securité
+            System.out.println("Ce que vous avez entré n'existe pas\n");
         }
     }
 
