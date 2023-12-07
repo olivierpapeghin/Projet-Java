@@ -94,6 +94,7 @@ public class Serveur extends Employe{
 			}
 			// On fait un récap de la commande
 			commande.recap();
+			commande.autoAnalyse(); // On prépare déjà la commande pour les cuisiniers/barmans
 			restaurant.addCommande(commande); // On envoie la commande aux cuisiniers/barmans
 			restaurant.getStock().consommationStock(commande);
 		}
@@ -119,13 +120,13 @@ public class Serveur extends Employe{
 				commande_prete.add(commande);
 			}
 		}
-		System.out.println(commande_prete);
 		// S'il existe des commandes prêtes
 		if(commande_prete.size()!=0){
 
 			// On affiche les commandes prêtes au serveur
 			for(int i=0;i<commande_prete.size();i++){
-				System.out.println("["+i+"] Pour la table "+commande_prete.get(i).getTable());
+				System.out.print("["+i+"] ");
+				commande_prete.get(i).recap();
 			}
 
 			// On attend la réponse du serveur

@@ -21,7 +21,8 @@ public class Barman extends Employe{
         else{
             while(i<liste_commandes.size()){
                 if(checkBoisson(liste_commandes.get(i))){
-                    System.out.println("["+(i+1)+"] - Pour la table "+liste_commandes.get(i).getTable()+" \n");
+                    System.out.print("["+(i+1)+"] ");
+                    liste_commandes.get(i).recapBoisson();
                 }
             i+=1;
             }
