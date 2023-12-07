@@ -130,7 +130,7 @@ public class Interface {
 				+ "1- Performances\n"
 				+ "2- Ajouter/Supprimer des employés\n"
 				+ "3- Gérer les emplois du temps de la semaine\n"
-				+ "3- Gestion des stocks\n"
+				+ "4- Gestion des stocks\n"
 				+ "5- Fin de la journée\n"
 				+ "6- Retour");
 		int choix = utiles.enregistreInt(1, 6,scanner);
@@ -161,11 +161,11 @@ public class Interface {
 	}
 		
 	public static void main(String[] args) {
-		Interface affichage = new Interface();
 		// Initialisation du restaurant ici
 		Restaurant restaurant=new Restaurant();
 		// On set le stock
 		restaurant.getStock().SetStockMax(30,60, 20, 40, 30, 35,35, 30,20, 30, 30, 30, 30);
+		restaurant.getStock().fillStock(); // On rempli le stock actuel en fonction du stock max
 		// Puis les tables
 		restaurant.addTable(1,4);
 		restaurant.addTable(2,4);
@@ -197,7 +197,7 @@ public class Interface {
 		restaurant.addEmploye(new Serveur("Sergiani","Enzo",300,edt));
 		edt.clear(); edt.add("Lundi"); edt.add("Mardi"); edt.add("Jeudi"); edt.add("Vendredi"); edt.add("Samedi");
 		restaurant.addEmploye(new Serveur("Yataghene","Lydia",1300,edt));
-		affichage.restaurant=restaurant;
+		Interface.restaurant=restaurant;
 		
 		while (true) {
 			ecranGeneral();
