@@ -35,8 +35,8 @@ public class Manager extends Employe{
 
     void ajouterSupprimerEmployes(Restaurant restaurant,Scanner scanner){
         System.out.println("Voulez-vous supprimer où ajouter des employés\n");
-        System.out.println("1 - ajouter // 2- Supprimer\n");
-        int rep = scanner.nextInt();
+        System.out.println("[1] - Ajouter \n[2]- Supprimer\n");
+        int rep = utiles.enregistreInt(1, 2, scanner); 
         if(rep==2){
             ArrayList<Employe> liste=restaurant.getEmploye();
             for(Employe entry : liste) {
@@ -239,31 +239,10 @@ public class Manager extends Employe{
      * On va afficher au manager les performances du restaurant aujourd'hui
      */
     void performances(Restaurant restaurant, Scanner scanner){
-        System.out.println("Performances du jour :\n\n"+
+        System.out.println("Performances du jour ("+restaurant.getJour()+") :\n\n"+
         "- Nombre de groupes de clients actuel : "+restaurant.getClientsActuels().size()+
         "\n- Nombre de commandes en cours : "+restaurant.getCommandes().size()+
         "\n- Nombre de commandes terminées : "+restaurant.getNb_commandes_finies()+"\n");
     }
-
     
 }
-
-
-
-
-
-
-//REFLEXION CYCLES JOURS/HEURES
-/*
-heures ouverture fermeture : A DEFINIR
-jours d'ouverture : 6/7 du lundi au samedi
-
-idée : chaque groupe de client a une durée de consommation (fixe ou random ?)
-       à chaque fois que le serveur finit la transaction des clients, l'heure de la journée augmente
-       si l'heure est supérieur à H-1, on n'accepte plus personne
-ex : un groupe de 2-4 prendra 1h à 2h, un groupe de 6-8 2h à 3h
-
-
-
-
- */

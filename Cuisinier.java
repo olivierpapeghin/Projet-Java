@@ -4,8 +4,6 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Cuisinier extends Employe{
-
-    FonctionsUtiles utiles = new FonctionsUtiles();
     
     Cuisinier(String nom, String prenom, float salaire, ArrayList<String> edt){
         super(nom,prenom,salaire,edt);
