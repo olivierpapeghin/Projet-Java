@@ -119,6 +119,7 @@ public class Serveur extends Employe{
 				commande_prete.add(commande);
 			}
 		}
+		System.out.println(commande_prete);
 		// S'il existe des commandes prêtes
 		if(commande_prete.size()!=0){
 

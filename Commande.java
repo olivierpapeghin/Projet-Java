@@ -67,6 +67,8 @@ public class Commande {
 	}
 
 	boolean est_prete(){
+		System.out.println(boisson_prete);
+		System.out.println(plat_pret);
 		if (boisson_prete && plat_pret){
 			return true;
 		}

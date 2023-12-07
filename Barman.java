@@ -44,7 +44,7 @@ public class Barman extends Employe{
             String rep = scanner.next();
             if(rep.equals("oui")){
             
-                liste_commandes.get(choixCommande-1).setPlat_pret(true);
+                liste_commandes.get(choixCommande-1).setBoisson_prete(true);
             }
         }
     }
