@@ -160,7 +160,20 @@ public class Serveur extends Employe{
 	 * 
 	 */
 	public Restaurant addition(Restaurant restaurant,Scanner scanner){
-
+		// On doit commencer par déterminer quelles tables sont occupées et peuvent donc commander
+		// On sait que les tables sont données dans l'ordre de la liste, on doit donc trouver la première table
+		// libre pour savoir où s'arrêter 
+		int max=0;
+		int indice_table=0;
+		while(max==0 || indice_table!=restaurant.getTables().size()){
+			if(restaurant.getTables().get(indice_table).occupe==false){ // Si on rencontre une table libre
+				max=indice_table; // On peut déduire que la liste des tables occupées s'arrête à cet indice
+			}
+			indice_table++; // On passe à la table suivante
+		}
+		
+		System.out.println("\nQuel est le numéro de la table qui commande ?");
+		int numtable=utiles.enregistreInt(1, max, scanner);
 
 
 		return restaurant;

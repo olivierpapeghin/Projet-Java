@@ -15,7 +15,6 @@ public class Restaurant {
 	private boolean ouvert;
 	
 	Restaurant(){
-		
 		initalise_carte(); // fonction qui permet d'eviter d'avoir unr grosse quantitée de code dans le
 		//constructeur
 
@@ -66,7 +65,9 @@ public class Restaurant {
 		return this.ouvert;
 	}
 
+
 	//Adders ( ajoute des objets au restaurant)
+
 	void addTable(int num, int places){
 		tables.add(new Table(num, places));
 	}
@@ -86,6 +87,11 @@ public class Restaurant {
 	void addCommandeFinie(){
 		this.nb_commandes_finies++;
 	}
+
+	void addFacture(Facture facture){
+		this.listeFacture.add(facture);
+	}
+
 
 	//Autres
 
@@ -210,14 +216,13 @@ public class Restaurant {
 		carte.add(new Plat("Pizza aux pepperonis",12,temp,"plat"));
 
 		// setting de la carte des boissons
-		
 		temp.clear();
 		temp.put("limonade",1);
 		carte.add(new Plat("Limonade",4,temp,"boisson"));
 
 		temp.clear();
-		temp.put("cidre_doux",1);
-		carte.add(new Plat("Cidre doux",5,temp,"boisson"));
+		temp.put("cidre_brut",1);
+		carte.add(new Plat("Cidre brut",5,temp,"boisson"));
 
 		temp.clear();
 		temp.put("biere",1);
