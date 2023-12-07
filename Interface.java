@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Interface {
@@ -67,11 +68,11 @@ public class Interface {
 				serveur();
 				break;
 			case 3:
-				restaurant=serveur.recupCommande(restaurant, scanner);
+				restaurant=serveur.recupCommande(restaurant,scanner);
 				serveur();
 				break;
 			case 4:
-				restaurant=serveur.addition(restaurant, scanner);
+				//addition();
 				serveur();
 				break;
 			case 5:
@@ -173,30 +174,29 @@ public class Interface {
 
 		// Puis les employés
 		// Le manager
-		ArrayList<String> edt = new ArrayList<String>();
-		edt.add("Lundi"); edt.add("Mardi"); edt.add("Mercredi"); edt.add("Jeudi");
-		edt.add("Vendredi"); edt.add("Samedi");
+		ArrayList<String> edt = new ArrayList<String>(Arrays.asList("Lundi","Mardi","Mercredi","Jeudi",
+									"Vendredi","Samedi"));
 		restaurant.addEmploye(new Manager("Papeghin","Olivier",4500,edt));
 
 		// Les barmans
-		edt.clear(); edt.add("Lundi"); edt.add("Mardi"); edt.add("Mercredi");
-		restaurant.addEmploye(new Barman("Lacroix","Matthieu",2000,edt));
-		edt.clear(); edt.add("Jeudi"); edt.add("Vendredi"); edt.add("Samedi");
-		restaurant.addEmploye(new Barman("Delerue","Paul",2000,edt));
+		ArrayList<String> edt1 = new ArrayList<String>(Arrays.asList("Lundi","Mardi","Mercredi"));
+		restaurant.addEmploye(new Barman("Lacroix","Matthieu",2000,edt1));
+		ArrayList<String> edt2 = new ArrayList<String>(Arrays.asList("Jeudi","Vendredi","Samedi"));
+		restaurant.addEmploye(new Barman("Delerue","Paul",2000,edt2));
 
 		// Les cuisiniers
-		edt.clear(); edt.add("Lundi"); edt.add("Mardi"); edt.add("Jeudi"); edt.add("Vendredi");
-		restaurant.addEmploye(new Cuisinier("Etchebest","Philippe",1300,edt));
-		edt.clear(); edt.add("Lundi"); edt.add("Mardi"); edt.add("Mercedi"); edt.add("Vendredi"); edt.add("Samedi");
-		restaurant.addEmploye(new Cuisinier("Bocuse","Paul",1300,edt));
-		restaurant.addEmploye(new Cuisinier("Bigard","Jean-marie",1500,edt));
-		restaurant.addEmploye(new Cuisinier("Rosier","Enzo",300,edt));
+		ArrayList<String> edt3 = new ArrayList<String>(Arrays.asList("Lundi","Mardi","Jeudi","Vendredi"));
+		restaurant.addEmploye(new Cuisinier("Etchebest","Philippe",1300,edt3));
+		ArrayList<String> edt4 = new ArrayList<String>(Arrays.asList("Mardi","Mercredi","Vendredi","Samedi"));
+		restaurant.addEmploye(new Cuisinier("Cocca","Florian",1300,edt4));
+		restaurant.addEmploye(new Cuisinier("Sokolowski","Raphaël",1500,edt4));
+		restaurant.addEmploye(new Cuisinier("Rosier","Enzo",300,edt4));
 
 		// Les serveurs
-		edt.clear(); edt.add("Lundi"); edt.add("Mardi"); edt.add("Mercredi"); edt.add("Vendredi"); edt.add("Samedi");
-		restaurant.addEmploye(new Serveur("Sergiani","Enzo",300,edt));
-		edt.clear(); edt.add("Lundi"); edt.add("Mardi"); edt.add("Jeudi"); edt.add("Vendredi"); edt.add("Samedi");
-		restaurant.addEmploye(new Serveur("Yataghene","Lydia",1300,edt));
+		ArrayList<String> edt5 = new ArrayList<String>(Arrays.asList("Lundi","Mardi","Mercredi","Vendredi","Samedi"));
+		restaurant.addEmploye(new Serveur("Sergiani","Enzo",300,edt5));
+		ArrayList<String> edt6 = new ArrayList<String>(Arrays.asList("Lundi","Mardi","Jeudi","Vendredi","Samedi"));
+		restaurant.addEmploye(new Serveur("Yataghene","Lydia",13000,edt6));
 		Interface.restaurant=restaurant;
 		
 		while (true) {
