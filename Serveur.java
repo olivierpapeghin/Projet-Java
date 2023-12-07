@@ -44,6 +44,7 @@ public class Serveur extends Employe{
 	 */
     public Restaurant priseCommande(Restaurant restaurant, Scanner scanner){
         Commande commande = new Commande();
+
 		// On prend le numéro de table pour pouvoir retrouver les clients
 
 		// On doit commencer par déterminer quelles tables sont occupées et peuvent donc commander
@@ -51,11 +52,17 @@ public class Serveur extends Employe{
 		// libre pour savoir où s'arrêter 
 		int max=0;
 		int indice_table=0;
-		while(max==0 || indice_table!=restaurant.getTables().size()){
+
+		while(max==0 && indice_table!=restaurant.getTables().size()){
+
 			if(restaurant.getTables().get(indice_table).occupe==false){ // Si on rencontre une table libre
 				max=indice_table; // On peut déduire que la liste des tables occupées s'arrête à cet indice
 			}
 			indice_table++; // On passe à la table suivante
+		}
+		// Si on n'a toujours pas de max (toutes les tables sont occupées)
+		if(indice_table==restaurant.getTables().size()){
+			max=restaurant.getTables().size();
 		}
 
 		if(restaurant.getClientsActuels().size()!=0){ // S'il y a des clients à servir
