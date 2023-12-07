@@ -10,20 +10,22 @@ public class Manager extends Employe{
 
     // permet d'imprimer la liste de course et de remplir les stocks
     void GestionDesStocks(Restaurant restaurant,Scanner scanner){ 
-        System.out.println("---- Liste de Course \n\n");
+        System.out.println("\n\n---- Liste de Course ---- \n");
         Stock stock=restaurant.getStock();
         int total=0;
+
         for(Map.Entry<String, Integer> entry : stock.getListe().entrySet()) {
     		        String ingredient = entry.getKey();
     		        Integer nbr = entry.getValue();
+
                     if((stock.getListe_max().get(ingredient)-nbr)!=0){
-                         System.out.println(" - "+(stock.getListe_max().get(ingredient)-nbr)
-                         +" : "+ingredient+"\n");
+                         System.out.println(" - "+ingredient
+                         +" x "+(stock.getListe_max().get(ingredient)-nbr));
                          total+=(stock.getListe_max().get(ingredient)-nbr);
                     }
 	    }
-         System.out.println("\nNombre total d'ingredients a acheter : "+total +"\n");
-         System.out.println("\n Les courses ont elles été faites ?");
+         System.out.println("\nNombre total d'ingrédients à acheter : "+total +"\n");
+         System.out.println("\nLes courses ont elles été faites ?");
          String rep = scanner.next();
          if(rep.equals("oui")){
             restaurant.getStock().fillStock();
@@ -236,10 +238,10 @@ public class Manager extends Employe{
      * On va afficher au manager les performances du restaurant aujourd'hui
      */
     void performances(Restaurant restaurant, Scanner scanner){
-        System.out.println("Performances du jour :\n"+
-        "Nombre de clients actuel : "+restaurant.getClientsActuels().size()+
-        "\nNombre de commandes en cours : "+restaurant.getCommandes().size()+
-        "\nNombre de commandes terminées : "+restaurant.getNb_commandes_finies());
+        System.out.println("Performances du jour :\n\n"+
+        "- Nombre de groupes de clients actuel : "+restaurant.getClientsActuels().size()+
+        "\n- Nombre de commandes en cours : "+restaurant.getCommandes().size()+
+        "\n- Nombre de commandes terminées : "+restaurant.getNb_commandes_finies()+"\n");
     }
 
     

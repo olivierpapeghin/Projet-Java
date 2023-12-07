@@ -68,8 +68,10 @@ public class Serveur extends Employe{
 			// Maintenant on prend la commande
 			System.out.println("\nVeuillez entrer la commande : (Produit puis quantité)\n");
 			String reponse = "oui";
+
 			// On dit que tant que le serveur ne décide pas que c'est terminé on continue à ajouter des plats
 			while(reponse.equals("oui")) {
+				
 				// On affiche la carte pour que le serveur sélectionne le bon plat
 				for (int i=0;i<restaurant.getCarte().size();i++){
 					System.out.print("["+i+"] "+restaurant.getCarte().get(i).getNom()+" : "+
@@ -105,8 +107,6 @@ public class Serveur extends Employe{
     }
 
 
-
-
 	/*
 	 * On va regarder parmi les commandes lesquelles sont prêtes à être livrées
 	 * Le serveur va en choisir une, ce faisant on va la retirer des commandes actuelles du restaurant
@@ -114,7 +114,7 @@ public class Serveur extends Employe{
 	 */
 	public Restaurant recupCommande(Restaurant restaurant,Scanner scanner){
 		// On récupère les commandes prêtes
-		ArrayList<Commande> commande_prete= new ArrayList<Commande>();
+		ArrayList<Commande> commande_prete = new ArrayList<Commande>();
 		for(Commande commande : restaurant.getCommandes()){
 			if(commande.est_prete()){
 				commande_prete.add(commande);
@@ -122,7 +122,6 @@ public class Serveur extends Employe{
 		}
 		// S'il existe des commandes prêtes
 		if(commande_prete.size()!=0){
-
 			// On affiche les commandes prêtes au serveur
 			for(int i=0;i<commande_prete.size();i++){
 				System.out.print("["+i+"] ");
@@ -155,6 +154,30 @@ public class Serveur extends Employe{
 		else{
 			System.out.println("Il n'y a aucune commande prête en ce moment");
 		}
+		return restaurant;
+	}
+
+
+	/*
+	 * 
+	 */
+	public Restaurant addition(Restaurant restaurant,Scanner scanner){
+		// On doit commencer par déterminer quelles tables sont occupées et peuvent donc commander
+		// On sait que les tables sont données dans l'ordre de la liste, on doit donc trouver la première table
+		// libre pour savoir où s'arrêter 
+		int max=0;
+		int indice_table=0;
+		while(max==0 || indice_table!=restaurant.getTables().size()){
+			if(restaurant.getTables().get(indice_table).occupe==false){ // Si on rencontre une table libre
+				max=indice_table; // On peut déduire que la liste des tables occupées s'arrête à cet indice
+			}
+			indice_table++; // On passe à la table suivante
+		}
+		
+		System.out.println("\nQuel est le numéro de la table qui commande ?");
+		int numtable=utiles.enregistreInt(1, max, scanner);
+
+
 		return restaurant;
 	}
 }
