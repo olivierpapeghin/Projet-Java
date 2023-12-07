@@ -98,6 +98,9 @@ public class Restaurant {
 				nbr_libre=nbr_libre+this.tables.get(i).getNb_places();
 				
 				if(nbr_libre>=nbr){
+					for(Table entry : tablesLibres){
+						entry.setOccupe(true);
+					}
 					return tablesLibres;
 				}
 			}
@@ -106,9 +109,7 @@ public class Restaurant {
 		if(nbr_libre<nbr){
 			tablesLibres.clear();
 		}
-		for(Table entry : tablesLibres){
-			entry.setOccupe(true);
-		}
+		
 		return tablesLibres;
 
 	}
