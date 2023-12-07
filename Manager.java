@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Manager extends Employe{
     
-    Manager(String nom, String prenom, float salaire, ArrayList<String> edt){
+    Manager(String nom, String prenom, int salaire, ArrayList<String> edt){
         super(nom,prenom,salaire,edt);
     }
 
@@ -39,20 +39,14 @@ public class Manager extends Employe{
         int rep = utiles.enregistreInt(1, 2, scanner); 
         if(rep==2){
             ArrayList<Employe> liste=restaurant.getEmploye();
-            for(Employe entry : liste) {
-                System.out.println("Prenom :"+entry.getPrenom()+"Nom : "+entry.getNom()+ "Role : "+entry.getClass()+
-                "Salaire : "+entry.getSalaire()+"\n");
+            for(int id_employe=0;id_employe<liste.size();id_employe++) {
+                System.out.print("["+id_employe+"] - ");
+                liste.get(id_employe).info();
             }
-            System.out.println("\n indiquez le nom de l'employé a enlever : ");
-            String nom = scanner.next();
-            int i=0;
-            for(Employe entry2 : liste) {
-                if(nom.equals(entry2.getNom())){
-                    restaurant.getEmploye().remove(i);
-                }
-                i+=1;
-            }
-
+            System.out.println("\nNuméro de l'employé a enlever : ");
+            int id_target = utiles.enregistreInt(0, liste.size(), scanner);
+            liste.remove(id_target);
+            System.out.println("Ce mécréant ne sera plus une nuisance\n");
         }
         else if(rep==1){ // ajout d'un employé
             // on recupere les infos de l'employé
@@ -61,20 +55,20 @@ public class Manager extends Employe{
             System.out.println("\nPrenom de l'employé : ");
             String Prenom= scanner.next();
             System.out.println("\nSalaire de l'employé : ");
-            float salaire= scanner.nextFloat();
-            System.out.println("\nRole de l'employé : \n");
+            int salaire= utiles.enregistreInt(0, 100000, scanner);
+            System.out.println("\nRole de l'employé :");
             String role= scanner.next(); 
             ArrayList<String> edt=new ArrayList<String>();
-            if(role.equals("barman")){ // pas de switch case pour utiliser equals
+            if(role.equals("Barman")){ // pas de switch case pour utiliser equals
                 restaurant.addEmploye(new Barman(nom, Prenom, salaire, edt));
             }
-            else if(role.equals("cuisinier")){
+            else if(role.equals("Cuisinier")){
                 restaurant.addEmploye(new Cuisinier(nom, Prenom, salaire, edt));
             }
-            else if(role.equals("serveur")){
+            else if(role.equals("Serveur")){
                 restaurant.addEmploye(new Serveur(nom, Prenom, salaire, edt));
             }
-            else if(role.equals("manager")){
+            else if(role.equals("Manager")){
                 restaurant.addEmploye(new Serveur(nom, Prenom, salaire, edt));
             }
             else{ // securité
@@ -87,7 +81,7 @@ public class Manager extends Employe{
     }
 
     /*
-     * On va temriner la journée et passer à la suivante
+     * On va terminer la journée et passer à la suivante
      */
     void finDeJournee(Restaurant restaurant, Scanner scanner){
         // On commence par vérifier qu'il ne reste plus de clients à servir

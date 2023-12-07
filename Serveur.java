@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class Serveur extends Employe{
 
-    Serveur(String nom, String prenom, float salaire, ArrayList<String> edt){
+    Serveur(String nom, String prenom, int salaire, ArrayList<String> edt){
         super(nom,prenom,salaire,edt);
     }
 

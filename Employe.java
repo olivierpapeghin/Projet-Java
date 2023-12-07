@@ -4,12 +4,12 @@ public class Employe {
     // Les informations du contrat de travail
     private String nom;
     private String prenom;
-    private float salaire;
+    private int salaire;
     private ArrayList<String> edt;
 
     FonctionsUtiles utiles = new FonctionsUtiles(); // Pour pouvoir utiliser les fonctions utiles
     
-    Employe(String nom, String prenom, float salaire, ArrayList<String> edt){
+    Employe(String nom, String prenom, int salaire, ArrayList<String> edt){
         this.nom=nom;
         this.prenom=prenom;
         this.salaire=salaire;
@@ -26,7 +26,7 @@ public class Employe {
         return this.prenom;
     }
 
-    float getSalaire(){
+    int getSalaire(){
         return this.salaire;
     }
 
@@ -44,7 +44,7 @@ public class Employe {
         this.prenom=prenom;
     }
 
-    void setSalaire(float salaire){
+    void setSalaire(int salaire){
         this.salaire=salaire;
     }
 
@@ -56,10 +56,11 @@ public class Employe {
 
     void info(){
         // On affiche les infos de manière concise
-        System.out.println("Nom : "+nom+"\n Prenom : "+prenom
-                    +"\n Salaire : "+salaire+"\nEmploi du temps de la semaine :");
+        System.out.println("Nom : "+nom+"\nPrenom : "+prenom
+                    +"\nSalaire : "+salaire+"$\nEmploi du temps de la semaine :");
         for(int i=0;i<edt.size();i++){
-            System.out.println(edt.get(i));
+            System.out.print(" "+edt.get(i));
         }
+        System.out.println("\n");
     }
 }

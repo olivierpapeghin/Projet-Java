@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Cuisinier extends Employe{
     
-    Cuisinier(String nom, String prenom, float salaire, ArrayList<String> edt){
+    Cuisinier(String nom, String prenom, int salaire, ArrayList<String> edt){
         super(nom,prenom,salaire,edt);
     }
 
