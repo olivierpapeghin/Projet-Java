@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -126,106 +127,35 @@ public class Manager extends Employe{
         for(int id_employe=0;id_employe<liste.size();id_employe++) {
             System.out.print("["+id_employe+"] - ");
             liste.get(id_employe).info();
-            System.out.println("\n indiquez le nom de l'employé a modifier : ");
-            String nom = scanner.next();
-            int i=0;
-            for(Employe entry2 : liste) {
-                if(nom.equals(entry2.getNom())){
-                    System.out.println("\n Faire travailler le Lundi ? (oui/non)");
-                    String rep = scanner.next();
-                    ArrayList<String> temp =new ArrayList<String>();
-                    int jours=0; // variable qui suit les jours de travail d'affilés
-                    if(rep.equals("oui")){
-                        temp.add("Lundi");
-                        jours+=1;
+        }
+        System.out.println("\nNuméro de l'employé à modifier : ");
+        int id_target = utiles.enregistreInt(0, liste.size(), scanner);
+        int jours=0; // variable qui suit les jours de travail d'affilés
+        ArrayList<String> semaine=new ArrayList<String>(Arrays.asList("Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi"));
+        ArrayList<String> edt =new ArrayList<String>();
+
+        for (int id_jour=0;id_jour<semaine.size();id_jour++){
+            if(jours<2){
+                System.out.println("\nFaire travailler le "+semaine.get(id_jour)+" ? (oui/non)");
+                String rep = scanner.next();
+
+                if(rep.equals("oui")){
+                    if(liste.get(id_target).getClass()!=Manager.class && edt.size()==0){
+                        jours++;
                     }
-                    else{
-                        if(entry2.getClass()!=new Manager(null, null, 0, null).getClass()){
-                            jours=0;
-                        }
+                    else if(liste.get(id_target).getClass()!=Manager.class && edt.get(edt.size()-1)==semaine.get(id_jour-1)){
+                        // Si l'employé n'est pas un manager alors on doit tenir compte des jours d'affilés
+                        jours++;
                     }
-                    System.out.println("\n Faire travailler le Mardi ? (oui/non)");
-                    rep = scanner.next();
-                    if(rep.equals("oui")){
-                        temp.add("Mardi");
-                        jours+=1;
-                    }
-                    else{
-                        if(entry2.getClass()!=new Manager(null, null, 0, null).getClass()){
-                            jours=0;
-                        }
-                    }
-                    System.out.println("\n Faire travailler le Mercredi ? (oui/non)");
-                    rep = scanner.next();
-                    if(rep.equals("oui")){
-                        if(jours==2){
-                            System.out.println("\n Vous ne pouvez pas assigner ce jour");
-                        }
-                        else{
-                            temp.add("Mercredi");
-                            jours+=1;
-                        }
-                        
-                    }
-                    else{
-                        if(entry2.getClass()!=new Manager(null, null, 0, null).getClass()){
-                            jours=0;
-                        }
-                    }
-                    System.out.println("\n Faire travailler le Jeudi ? (oui/non)");
-                    rep = scanner.next();
-                    if(rep.equals("oui")){
-                        if(jours==2){
-                            System.out.println("\n Vous ne pouvez pas assigner ce jour");
-                        }
-                        else{
-                            temp.add("Jeudi");
-                            jours+=1;
-                        }
-                    }
-                    else{
-                        if(entry2.getClass()!=new Manager(null, null, 0, null).getClass()){
-                            jours=0;
-                        }
-                    }
-                    System.out.println("\n Faire travailler le Vendredi ? (oui/non)");
-                    rep = scanner.next();
-                    if(rep.equals("oui")){
-                        if(jours==2){
-                            System.out.println("\n Vous ne pouvez pas assigner ce jour");
-                        }
-                        else{
-                            temp.add("Vendredi");
-                            jours+=1;
-                        }
-                    }
-                    else{
-                        if(entry2.getClass()!=new Manager(null, null, 0, null).getClass()){
-                            jours=0;
-                        }
-                    }
-                    System.out.println("\n Faire travailler le Samedi ? (oui/non)");
-                    rep = scanner.next();
-                    if(rep.equals("oui")){
-                        if(jours==2){
-                            System.out.println("\n Vous ne pouvez pas assigner ce jour");
-                        }
-                        else{
-                            temp.add("Samedi");
-                            jours+=1;
-                        }
-                    }
-                    else{
-                        if(entry2.getClass()!=new Manager(null, null, 0, null).getClass()){
-                            jours=0;
-                        }
-                    }
-                    restaurant.getEmploye().get(i).setEdt(temp);
-                    
+                    edt.add(semaine.get(id_jour));
                 }
-                i+=1;
+            }
+            else{
+                System.out.println("\nTravail impossible ce "+semaine.get(id_jour));
+                jours=1; // On reset le compteur de jour d'affilés
             }
         }
+        restaurant.getEmploye().get(id_target).setEdt(edt);
     }
 
     
