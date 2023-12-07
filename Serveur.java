@@ -105,8 +105,6 @@ public class Serveur extends Employe{
     }
 
 
-
-
 	/*
 	 * On va regarder parmi les commandes lesquelles sont prêtes à être livrées
 	 * Le serveur va en choisir une, ce faisant on va la retirer des commandes actuelles du restaurant
@@ -114,7 +112,7 @@ public class Serveur extends Employe{
 	 */
 	public Restaurant recupCommande(Restaurant restaurant,Scanner scanner){
 		// On récupère les commandes prêtes
-		ArrayList<Commande> commande_prete= new ArrayList<Commande>();
+		ArrayList<Commande> commande_prete = new ArrayList<Commande>();
 		for(Commande commande : restaurant.getCommandes()){
 			if(commande.est_prete()){
 				commande_prete.add(commande);
@@ -122,7 +120,6 @@ public class Serveur extends Employe{
 		}
 		// S'il existe des commandes prêtes
 		if(commande_prete.size()!=0){
-
 			// On affiche les commandes prêtes au serveur
 			for(int i=0;i<commande_prete.size();i++){
 				System.out.print("["+i+"] ");
@@ -155,6 +152,17 @@ public class Serveur extends Employe{
 		else{
 			System.out.println("Il n'y a aucune commande prête en ce moment");
 		}
+		return restaurant;
+	}
+
+
+	/*
+	 * 
+	 */
+	public Restaurant addition(Restaurant restaurant,Scanner scanner){
+
+
+
 		return restaurant;
 	}
 }
