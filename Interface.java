@@ -67,11 +67,11 @@ public class Interface {
 				serveur();
 				break;
 			case 3:
-				restaurant=serveur.recupCommande(restaurant,scanner);
+				restaurant=serveur.recupCommande(restaurant, scanner);
 				serveur();
 				break;
 			case 4:
-				//addition();
+				restaurant=serveur.addition(restaurant, scanner);
 				serveur();
 				break;
 			case 5:
