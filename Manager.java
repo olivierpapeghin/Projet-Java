@@ -124,6 +124,114 @@ public class Manager extends Employe{
         }
     }
 
+    void GestionEDT(Restaurant restaurant,Scanner scanner){
+        ArrayList<Employe> liste=restaurant.getEmploye();
+        for(Employe entry : liste) {
+            System.out.println("Prenom :"+entry.getPrenom()+"Nom : "+entry.getNom()+ "Role : "+entry.getClass()+
+            "Salaire : "+entry.getSalaire()+"\n");
+            System.out.println("\n indiquez le nom de l'employé a modifier : ");
+            String nom = scanner.next();
+            int i=0;
+            for(Employe entry2 : liste) {
+                if(nom.equals(entry2.getNom())){
+                    System.out.println("\n Faire travailler le Lundi ? (oui/non)");
+                    String rep = scanner.next();
+                    ArrayList<String> temp =new ArrayList<String>();
+                    int jours=0; // variable qui suit les jours de travail d'affilés
+                    if(rep.equals("oui")){
+                        temp.add("Lundi");
+                        jours+=1;
+                    }
+                    else{
+                        if(entry2.getClass()!=new Manager(null, null, 0, null).getClass()){
+                            jours=0;
+                        }
+                    }
+                    System.out.println("\n Faire travailler le Mardi ? (oui/non)");
+                    rep = scanner.next();
+                    if(rep.equals("oui")){
+                        temp.add("Mardi");
+                        jours+=1;
+                    }
+                    else{
+                        if(entry2.getClass()!=new Manager(null, null, 0, null).getClass()){
+                            jours=0;
+                        }
+                    }
+                    System.out.println("\n Faire travailler le Mercredi ? (oui/non)");
+                    rep = scanner.next();
+                    if(rep.equals("oui")){
+                        if(jours==2){
+                            System.out.println("\n Vous ne pouvez pas assigner ce jour");
+                        }
+                        else{
+                            temp.add("Mercredi");
+                            jours+=1;
+                        }
+                        
+                    }
+                    else{
+                        if(entry2.getClass()!=new Manager(null, null, 0, null).getClass()){
+                            jours=0;
+                        }
+                    }
+                    System.out.println("\n Faire travailler le Jeudi ? (oui/non)");
+                    rep = scanner.next();
+                    if(rep.equals("oui")){
+                        if(jours==2){
+                            System.out.println("\n Vous ne pouvez pas assigner ce jour");
+                        }
+                        else{
+                            temp.add("Jeudi");
+                            jours+=1;
+                        }
+                    }
+                    else{
+                        if(entry2.getClass()!=new Manager(null, null, 0, null).getClass()){
+                            jours=0;
+                        }
+                    }
+                    System.out.println("\n Faire travailler le Vendredi ? (oui/non)");
+                    rep = scanner.next();
+                    if(rep.equals("oui")){
+                        if(jours==2){
+                            System.out.println("\n Vous ne pouvez pas assigner ce jour");
+                        }
+                        else{
+                            temp.add("Vendredi");
+                            jours+=1;
+                        }
+                    }
+                    else{
+                        if(entry2.getClass()!=new Manager(null, null, 0, null).getClass()){
+                            jours=0;
+                        }
+                    }
+                    System.out.println("\n Faire travailler le Samedi ? (oui/non)");
+                    rep = scanner.next();
+                    if(rep.equals("oui")){
+                        if(jours==2){
+                            System.out.println("\n Vous ne pouvez pas assigner ce jour");
+                        }
+                        else{
+                            temp.add("Samedi");
+                            jours+=1;
+                        }
+                    }
+                    else{
+                        if(entry2.getClass()!=new Manager(null, null, 0, null).getClass()){
+                            jours=0;
+                        }
+                    }
+                    
+                }
+                i+=1;
+            }
+        }
+    }
+
+    
+
     /*
      * On va afficher au manager les performances du restaurant aujourd'hui
      */
