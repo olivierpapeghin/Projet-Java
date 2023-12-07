@@ -53,13 +53,13 @@ public class Manager extends Employe{
 
         }
         else{
-            System.out.println("\nNom de l'employés : ");
+            System.out.println("\nNom de l'employé : ");
             String nom = scanner.next();
-            System.out.println("\nPrenom de l'employés : ");
+            System.out.println("\nPrenom de l'employé : ");
             String Prenom= scanner.next();
-            System.out.println("\nSalaire de l'employés : ");
+            System.out.println("\nSalaire de l'employé : ");
             float salaire= scanner.nextFloat();
-            System.out.println("\nRole de l'employés : \n");
+            System.out.println("\nRole de l'employé : \n");
             String role= scanner.next(); 
             ArrayList<String> edt=new ArrayList<String>();
             if(role.equals("barman")){ // pas de switch case pour utiliser equals
@@ -78,6 +78,56 @@ public class Manager extends Employe{
                 System.out.println("Ce que vous avez entré n'existe pas\n");
             }
         }
+    }
+
+    /*
+     * On va temriner la journée et passer à la suivante
+     */
+    void finDeJournee(Restaurant restaurant, Scanner scanner){
+        // On commence par vérifier qu'il ne reste plus de clients à servir
+        if(restaurant.getClientsActuels().size()==0){
+            restaurant.switchJours(); // On change le jour du restaurant
+            // On va compter le nombre de chaque employé qui va pouvoir travailler pour la nouvelle journée
+            int nb_serveur=0;
+            int nb_cuisinier=0;
+            int nb_barman=0;
+            int nb_manager=0;
+            for(int ind_employe=0;ind_employe<restaurant.getEmploye().size();ind_employe++){
+                // Si l'employé travaille ce jour
+                if(restaurant.getEmploye().get(ind_employe).getEdt().contains(restaurant.getJour())){
+                    if(restaurant.getEmploye().get(ind_employe).getClass()==Serveur.class){
+                        nb_serveur++;
+                    }
+                    else if (restaurant.getEmploye().get(ind_employe).getClass()==Cuisinier.class){
+                        nb_cuisinier++;
+                    }
+                    else if (restaurant.getEmploye().get(ind_employe).getClass()==Barman.class){
+                        nb_barman++;
+                    }
+                    else{
+                        nb_manager++;
+                    }
+                }
+            }
+
+            // Maintenant on va regarder si on a assez de chaque employé pour ouvrir
+            if(nb_serveur>=2 && nb_cuisinier>=4 && nb_barman>=1 && nb_manager>=1){
+                restaurant.ouverture(true);
+            }
+            else{
+                restaurant.ouverture(false);
+            }
+        }
+    }
+
+    /*
+     * On va afficher au manager les performances du restaurant aujourd'hui
+     */
+    void performances(Restaurant restaurant, Scanner scanner){
+        System.out.println("Performances du jour :\n"+
+        "Nombre de clients actuel : "+restaurant.getClientsActuels().size()+
+        "\nNombre de commandes en cours : "+restaurant.getCommandes().size()+
+        "\nNombre de commandes terminées : "+restaurant.getNb_commandes_finies());
     }
 
     

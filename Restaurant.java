@@ -6,12 +6,13 @@ public class Restaurant {
 	private ArrayList<Table> tables = new ArrayList<Table>();
 	private ArrayList<Employe> employes = new ArrayList<Employe>();
 	private ArrayList<GroupeClient> clients_actuels = new ArrayList<GroupeClient>();
-	private int jour;
+	private String jour;
 	private Stock stock = new Stock();
 	private ArrayList<Facture> listeFacture = new ArrayList<Facture>();
 	private static ArrayList<Plat> carte = new ArrayList<Plat>();
 	private ArrayList<Commande> commandeEnCours = new ArrayList<Commande>();
 	private int nb_commandes_finies;
+	private boolean ouvert;
 	
 	Restaurant(){
 		
@@ -19,7 +20,7 @@ public class Restaurant {
 		//constructeur
 
 		// initialisation des variables de base
-		jour=1;
+		jour="Lundi";
 		nb_commandes_finies=0;
 	}
 
@@ -41,7 +42,7 @@ public class Restaurant {
 		return listeFacture;
 	}
 
-	int getJour(){
+	String getJour(){
 		return jour;
 	}
 
@@ -59,6 +60,10 @@ public class Restaurant {
 
 	int getNb_commandes_finies(){
 		return this.nb_commandes_finies;
+	}
+
+	boolean getOuvert(){
+		return this.ouvert;
 	}
 
 	//Adders ( ajoute des objets au restaurant)
@@ -84,13 +89,29 @@ public class Restaurant {
 
 	//Autres
 
+	/*
+	 * On passe au jour suivant de la semaine (on ne travaille pas le dimanche)
+	 */
 	void switchJours(){
-		if(this.jour==7){
-			this.jour=1;
+		ArrayList<String> semaine = new ArrayList<String>();
+		semaine.add("Lundi");semaine.add("Mardi");semaine.add("Mercredi");
+		semaine.add("Jeudi");semaine.add("Venredi");semaine.add("Samedi");
+		int indice_jour_actuel = semaine.indexOf(jour);
+		if(indice_jour_actuel==semaine.size()-1){
+			indice_jour_actuel=0;
 		}
 		else{
-			this.jour=jour+1;
+			indice_jour_actuel++;
 		}
+		nb_commandes_finies=0; // On reset les performances journalières
+		jour = semaine.get(indice_jour_actuel); // On passe au jour suivant
+	}
+
+	/*
+	 * On définit si oui ou non le restaurant est ouvert
+	 */
+	void ouverture(boolean ouvert){
+		this.ouvert=ouvert;
 	}
 
 
