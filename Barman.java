@@ -42,7 +42,7 @@ public class Barman extends Employe{
                         System.out.println(nbr_plat+" "+plat.getNom()+"\n");
                     }
 		        }
-            System.out.println("La commande est elle validée ?(oui/non)\n");
+            System.out.println("Valider la commande ?(oui/non)\n");
             String rep = scanner.next();
             if(rep.equals("oui")){
             

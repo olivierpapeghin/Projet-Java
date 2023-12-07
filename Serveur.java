@@ -21,7 +21,6 @@ public class Serveur extends Employe{
 
         // On regarde s'il y a assez de tables pour accueillir les clients
         ArrayList<Table> tables_client = restaurant.checkPlaces(nb_clients);
-		System.out.println(tables_client);
         if (tables_client.size()==0){
            // S'il n'y a pas de table disponible
            System.out.println("\nIl n'y a pas assez de places pour accueillir ces clients\n");
