@@ -10,13 +10,22 @@ public class Interface {
 
 //-------------- Menu général -----------------------------------------------------------
 	public static void ecranGeneral(){
-		System.out.println("\nQuel écran souhaitez vous afficher ?\n"
-				+ "1- Ecran Serveur\n"
-				+ "2- Ecran cuisine\n"
-				+ "3- Ecran bar\n"
-				+ "4- Ecran Monitoring\n");
-		int choixEcran = utiles.enregistreInt(1,5,scanner);
-		afficheEcranGeneral(choixEcran);
+		if(restaurant.getOuvert()){
+			System.out.println("\nQuel écran souhaitez vous afficher ?\n"
+					+ "1- Ecran Serveur\n"
+					+ "2- Ecran cuisine\n"
+					+ "3- Ecran bar\n"
+					+ "4- Ecran Monitoring\n");
+			int choixEcran = utiles.enregistreInt(1,5,scanner);
+			afficheEcranGeneral(choixEcran);
+		}
+		else{
+			System.out.println("\nLe restaurant est fermé aujourd'hui ("+restaurant.getJour()+")\n"
+					+"1- Fin de journée");
+			utiles.enregistreInt(1,1,scanner);
+			Manager manager = new Manager(null, null, 0, null);
+			manager.finDeJournee(restaurant, scanner);
+		}
 	}
 
 	// Redirection depuis le menu général

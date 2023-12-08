@@ -19,6 +19,7 @@ public class Restaurant {
 		//constructeur
 
 		// initialisation des variables de base
+		ouvert=true;
 		jour="Lundi";
 		nb_commandes_finies=0;
 	}
@@ -101,7 +102,7 @@ public class Restaurant {
 	void switchJours(){
 		ArrayList<String> semaine = new ArrayList<String>();
 		semaine.add("Lundi");semaine.add("Mardi");semaine.add("Mercredi");
-		semaine.add("Jeudi");semaine.add("Venredi");semaine.add("Samedi");
+		semaine.add("Jeudi");semaine.add("Vendredi");semaine.add("Samedi");
 		int indice_jour_actuel = semaine.indexOf(jour);
 		if(indice_jour_actuel==semaine.size()-1){
 			indice_jour_actuel=0;
