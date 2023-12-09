@@ -235,9 +235,8 @@ public class Serveur extends Employe{
 				System.out.println("Certains clients n'ont pas encore reçu leur commande");
 			}
 
-			
-			//RETIRER LES CLIENTS (d'autres choses à retirer ?)
-			restaurant.supprClient(numtable);
+			//RETIRER LES CLIENTS
+			restaurant.getClientsActuels().remove(numtable-1);
 		}
 		else{
 			System.out.println("Il n'y a pas de clients.");
