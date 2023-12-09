@@ -225,7 +225,7 @@ public class Serveur extends Employe{
 								prix_tot += com.prixTotal();
 							}
 							facture = new Facture(c.getClients(), /*numtable,*/ prix_tot, c.getCommandes());
-							facture.Ecriture();
+							facture.Ecriture(nom_fichier);
 							restaurant.addFacture(facture);
 							fact_ecrite = true;
 						}

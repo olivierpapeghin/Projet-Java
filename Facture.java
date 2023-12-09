@@ -26,7 +26,7 @@ public class Facture {
         this.detail_commandes=detail_commandes;
     }
 
-    public void Ecriture(){
+    public void Ecriture(String nom_fichier){
         /*PrintWriter fichier = null;
 		try {
 			fichier = new PrintWriter("facture.txt");
@@ -50,7 +50,7 @@ public class Facture {
             x.getStackTrace();
         }*/
 
-        final String dataFile = "facture1.txt";
+        final String dataFile = nom_fichier;
 		try (
 			ObjectOutputStream out = new ObjectOutputStream(
 					new BufferedOutputStream(
