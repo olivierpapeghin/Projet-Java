@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.io.File;
+import java.io.IOException;
 
 public class Serveur extends Employe{
 
@@ -189,6 +191,23 @@ public class Serveur extends Employe{
 			}
 
 			if(rien_en_cours == true){
+				//le fichier est crée une fois son nom rentré
+				System.out.println("\nQuel sera le nom du fichier ?");
+				String nom_fichier = scanner.next();
+				File fichier = new File(nom_fichier);
+				try{
+					boolean fichier_cree = fichier.createNewFile();
+					if(fichier_cree){
+						System.out.println("Fichier créé avec succès");
+					}
+					else{
+						System.out.println("Le fichier existe déjà");
+					}
+				}
+				catch (IOException e){
+					System.err.println("Erreur lors de la création du fichier : " + e.getMessage());
+				}
+
 				//je crée une liste groupeclient pour le foreach
 				ArrayList<GroupeClient> clients = new ArrayList<GroupeClient>();
 				clients = restaurant.getClientsActuels();
