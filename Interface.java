@@ -69,19 +69,19 @@ public class Interface {
 		Serveur serveur = new Serveur(null, null, 0, null);
 		switch(choix) {
 			case 1:
-				restaurant=serveur.accueilClient(restaurant, scanner);
+				serveur.accueilClient(restaurant, scanner);
 				serveur();
 				break;
 			case 2:
-				restaurant=serveur.priseCommande(restaurant, scanner);
+				serveur.priseCommande(restaurant, scanner);
 				serveur();
 				break;
 			case 3:
-				restaurant=serveur.recupCommande(restaurant,scanner);
+				serveur.recupCommande(restaurant,scanner);
 				serveur();
 				break;
 			case 4:
-				//addition();
+				serveur.addition(restaurant, scanner);
 				serveur();
 				break;
 			case 5:

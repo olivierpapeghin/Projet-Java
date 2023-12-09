@@ -69,7 +69,7 @@ public class Facture {
                 HashMap<Plat,Integer> tempo = c.getListe();
 			    out.writeObject(tempo);
             }
-			System.out.println("\nEcriture de la facture réussit.\n");
+			System.out.println("\nEcriture de la facture réussie.\n");
 			out.close();
 		}
 		catch(IOException e){

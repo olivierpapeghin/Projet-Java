@@ -13,7 +13,7 @@ public class Serveur extends Employe{
 	 * si oui on leur assigne des tables (qui deviennent donc occupée)
 	 * sinon on ne peut pas les accueillir
 	 */
-    public Restaurant accueilClient(Restaurant restaurant, Scanner scanner){
+    public void accueilClient(Restaurant restaurant, Scanner scanner){
         System.out.println("\nCombien de clients y a-t-il ?");
         int nb_clients=utiles.enregistreInt(1, 20, scanner);
 
@@ -32,7 +32,6 @@ public class Serveur extends Employe{
             System.out.println("\n");
             restaurant.addClient(new GroupeClient(nb_clients, tables_client)); // On ajoute les clients
         }
-		return restaurant;
     }
 
 
@@ -42,7 +41,7 @@ public class Serveur extends Employe{
 	 * Une fois confirmée la commande est envoyée dans les commandes en cours qui seront effectuées par les
 	 * cuisiniers et barmans
 	 */
-    public Restaurant priseCommande(Restaurant restaurant, Scanner scanner){
+    public void priseCommande(Restaurant restaurant, Scanner scanner){
         Commande commande = new Commande();
 
 		// On prend le numéro de table pour pouvoir retrouver les clients
@@ -108,7 +107,6 @@ public class Serveur extends Employe{
 		else{
 			System.out.println("Il n'y a pas de clients.");
 		}
-		return restaurant;
     }
 
 
@@ -117,7 +115,7 @@ public class Serveur extends Employe{
 	 * Le serveur va en choisir une, ce faisant on va la retirer des commandes actuelles du restaurant
 	 * pour l'ajouter dans les commandes du groupe client associé
 	 */
-	public Restaurant recupCommande(Restaurant restaurant,Scanner scanner){
+	public void recupCommande(Restaurant restaurant,Scanner scanner){
 		// On récupère les commandes prêtes
 		ArrayList<Commande> commande_prete = new ArrayList<Commande>();
 		for(Commande commande : restaurant.getCommandes()){
@@ -159,17 +157,13 @@ public class Serveur extends Employe{
 		else{
 			System.out.println("Il n'y a aucune commande prête en ce moment");
 		}
-		return restaurant;
 	}
 
 
 	/*
 	 * 
 	 */
-	public Restaurant addition(Restaurant restaurant,Scanner scanner){
-		// On doit commencer par déterminer quelles tables sont occupées et peuvent donc commander
-		// On sait que les tables sont données dans l'ordre de la liste, on doit donc trouver la première table
-		// libre pour savoir où s'arrêter 
+	public void addition(Restaurant restaurant,Scanner scanner){
 		int max=0;
 		int indice_table=0;
 		while(max==0 || indice_table!=restaurant.getTables().size()){
@@ -182,11 +176,10 @@ public class Serveur extends Employe{
 		
 
 		if(restaurant.getClientsActuels().size()!=0){ // S'il y a des clients prêts pour payer
-			System.out.println("\nQuel est le numéro de la table qui réclame l'addition ?");
+			System.out.println("\nQuel est le numéro de la table qui demande l'addition ?");
 			int numtable=utiles.enregistreInt(1, max, scanner);
 
-			ArrayList<Commande> comEnCours = new ArrayList<Commande>();
-			comEnCours = restaurant.getCommandes();
+			ArrayList<Commande> comEnCours = restaurant.getCommandes();
 
 			boolean rien_en_cours = true;
 			for(Commande comm : comEnCours){
@@ -227,8 +220,5 @@ public class Serveur extends Employe{
 		else{
 			System.out.println("Il n'y a pas de clients.");
 		}
-
-
-		return restaurant;
 	}
 }
