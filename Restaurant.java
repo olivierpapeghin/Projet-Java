@@ -24,7 +24,7 @@ public class Restaurant {
 		nb_commandes_finies=0;
 	}
 
-	
+
 	// Getter
 
 	ArrayList<Table> getTables(){
@@ -98,15 +98,18 @@ public class Restaurant {
 	//Suppression
 
 	void supprClient(int num_table){
+		clients_actuels.remove(num_table-1);
+		/*
 		boolean supprimed = false;
 		for(GroupeClient c : clients_actuels){
 			for(Table t : c.getTable()){
 				if(t.getNumero() == num_table && supprimed == false){
-					clients_actuels.remove(num_table);
+					clients_actuels.remove(num_table-1);
 					supprimed = true;
 				}
 			}
 		}
+		*/
 	}
 
 
