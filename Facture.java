@@ -14,6 +14,7 @@ import java.util.HashMap;
 
 
 public class Facture {
+
     private int nb_clients;
     //private int numero_table;
     private int prix_total;
@@ -27,29 +28,6 @@ public class Facture {
     }
 
     public void Ecriture(String nom_fichier){
-        /*PrintWriter fichier = null;
-		try {
-			fichier = new PrintWriter("facture.txt");
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-        try {
-            fichier.println("========== FACTURE =========="); //ajout option date/heure/numéro de facture ?
-            fichier.println("Nombre de clients : "+nb_clients);
-            fichier.println("Prix total : "+prix_total);
-            fichier.println("Detail de la commande : \n");
-            for(int indice_com = 0; indice_com < detail_commandes.size(); indice_com++){
-                for(int indice_list = 0; indice_list < detail_commandes.size(); indice_list++){
-                    fichier.println(detail_commandes.get(indice_com).getListe().get(indice_list));
-                }
-            }
-            System.out.println("Ecriture réussie !");
-        }
-        catch(Exception x) {
-            System.err.format("Exception : %s%n", x);
-            x.getStackTrace();
-        }*/
-
         final String dataFile = nom_fichier;
 		try (
 			ObjectOutputStream out = new ObjectOutputStream(
@@ -67,7 +45,16 @@ public class Facture {
             for(Commande c : detail_commandes){
                 c.recap();
                 HashMap<Plat,Integer> tempo = c.getListe();
-			    out.writeObject(tempo);
+                for(Plat p : tempo.keySet()){
+                    out.writeObject("nom du plat : " + p.getNom());
+                    out.writeObject("type de plat : " + p.getType());
+                    out.writeObject("composition du plat : " + p.getComposition());
+                    out.writeObject("prix du plat : " + p.getPrix());
+                }
+                for(Integer i : tempo.values()){
+                    out.writeObject("nombre de plats dans l'ordre : " + i);
+                }
+			    //out.writeObject(tempo);  //erreur de serialization de Plat on sait pas pourquoi
             }
 			System.out.println("\nEcriture de la facture réussie.\n");
 			out.close();
@@ -76,4 +63,5 @@ public class Facture {
 			System.out.println("Problème détecté : " + e);
 		}
     }
+
 }
