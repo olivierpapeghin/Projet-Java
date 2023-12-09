@@ -24,6 +24,7 @@ public class Restaurant {
 		nb_commandes_finies=0;
 	}
 
+	
 	// Getter
 
 	ArrayList<Table> getTables(){
@@ -91,6 +92,21 @@ public class Restaurant {
 
 	void addFacture(Facture facture){
 		this.listeFacture.add(facture);
+	}
+
+
+	//Suppression
+
+	void supprClient(int num_table){
+		boolean supprimed = false;
+		for(GroupeClient c : clients_actuels){
+			for(Table t : c.getTable()){
+				if(t.getNumero() == num_table && supprimed == false){
+					clients_actuels.remove(num_table);
+					supprimed = true;
+				}
+			}
+		}
 	}
 
 

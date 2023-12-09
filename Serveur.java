@@ -176,7 +176,6 @@ public class Serveur extends Employe{
 		}
 
 		
-
 		if(restaurant.getClientsActuels().size()!=0){ // S'il y a des clients prêts pour payer
 			System.out.println("\nQuel est le numéro de la table qui demande l'addition ?");
 			int numtable=utiles.enregistreInt(1, max, scanner);
@@ -235,9 +234,14 @@ public class Serveur extends Employe{
 			else{
 				System.out.println("Certains clients n'ont pas encore reçu leur commande");
 			}
+
+			
+			//RETIRER LES CLIENTS (d'autres choses à retirer ?)
+			restaurant.supprClient(numtable);
 		}
 		else{
 			System.out.println("Il n'y a pas de clients.");
 		}
+
 	}
 }

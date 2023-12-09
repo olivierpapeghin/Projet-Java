@@ -172,7 +172,7 @@ public class Interface {
 		
 	public static void main(String[] args) {
 		// Initialisation du restaurant ici
-		Restaurant restaurant=new Restaurant();
+		Restaurant restaurant = new Restaurant();
 		// On set le stock
 		restaurant.getStock().SetStockMax(30,60, 20, 40, 30, 35,35, 30,20, 30, 30, 30, 30);
 		restaurant.getStock().fillStock(); // On rempli le stock actuel en fonction du stock max
