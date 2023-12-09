@@ -15,7 +15,10 @@ public class FonctionsUtiles {
 				System.out.println("Vous devez rentrer un entier compris entre "+min+" et "+max+".");
 				reponse=-1;
 			}
-			System.out.println("Vous devez rentrer un entier compris entre "+min+" et "+max+".");
+			if(reponse>max || reponse<min){
+				System.out.println("Vous devez rentrer un entier compris entre "+min+" et "+max+".");
+			}
+			
 		}
 		return reponse;
 	};

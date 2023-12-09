@@ -44,6 +44,12 @@ public class Cuisinier extends Employe{
             
                 liste_commandes.get(choixCommande-1).setPlat_pret(true);
             }
+            else if(rep.equals("non")){
+                System.out.println("La commande n'a pas été validé\n");
+            }
+            else{
+                System.out.println("La reponse n'a pas été comprise, la commande a été annulée\n");
+            }
 
         }
     }
