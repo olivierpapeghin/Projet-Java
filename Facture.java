@@ -47,12 +47,14 @@ public class Facture {
                 HashMap<Plat,Integer> tempo = c.getListe();
                 for(Plat p : tempo.keySet()){
                     out.writeObject("nom du plat : " + p.getNom());
-                    out.writeObject("type de plat : " + p.getType());
-                    out.writeObject("composition du plat : " + p.getComposition());
-                    out.writeObject("prix du plat : " + p.getPrix());
+                    out.writeObject("\ntype de plat : " + p.getType());
+                    out.writeObject("\ncomposition du plat : " + p.getComposition());
+                    out.writeObject("\nprix du plat : " + p.getPrix());
+                    System.out.println("Nom du plat : " + p.getNom() + " de type : " + p.getType() + " est composé de : " + p.getComposition() + " à un prix de : " + p.getPrix());
                 }
                 for(Integer i : tempo.values()){
-                    out.writeObject("nombre de plats dans l'ordre : " + i);
+                    out.writeObject("\nnombre de plats dans l'ordre : " + i);
+                    System.out.println("Nombre de plats dans l'ordre : " + i);
                 }
 			    //out.writeObject(tempo);  //erreur de serialization de Plat on sait pas pourquoi
             }
