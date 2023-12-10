@@ -1,8 +1,3 @@
-// Pour écrire en String avec précision dans les txt
-// import java.util.ArrayList;
-// import java.io.PrintWriter;
-// import java.io.FileNotFoundException;
-
 // Pour écrire en Sérializant dans les txt
 import java.io.BufferedOutputStream;
 import java.io.ObjectOutputStream;
@@ -16,13 +11,11 @@ import java.util.HashMap;
 public class Facture {
 
     private int nb_clients;
-    //private int numero_table;
     private int prix_total;
     private ArrayList<Commande> detail_commandes;
 
-    Facture(int nb_clients, /*int numero_table,*/ int prix_total, ArrayList<Commande> detail_commandes){
+    Facture(int nb_clients, int prix_total, ArrayList<Commande> detail_commandes){
         this.nb_clients=nb_clients;
-        //this.numero_table=numero_table;
         this.prix_total=prix_total;
         this.detail_commandes=detail_commandes;
     }
@@ -37,26 +30,25 @@ public class Facture {
 			)
 		)
 		{
-			out.writeObject(LocalDate.now());
-			out.writeInt(nb_clients);
-			//out.writeInt(numero_table);
-            out.writeInt(prix_total);
-            System.out.println("Résumé de la commande :\n");
+			out.writeObject("Date de paiement : " + LocalDate.now());
+			out.writeObject("Nombre clients : " + nb_clients);
+            out.writeObject("Prix total de la commande : " + prix_total);
+            System.out.println("Résumé de la commande :");
             for(Commande c : detail_commandes){
                 c.recap();
                 HashMap<Plat,Integer> tempo = c.getListe();
                 for(Plat p : tempo.keySet()){
-                    out.writeObject("nom du plat : " + p.getNom());
-                    out.writeObject("\ntype de plat : " + p.getType());
-                    out.writeObject("\ncomposition du plat : " + p.getComposition());
-                    out.writeObject("\nprix du plat : " + p.getPrix());
+                    out.writeObject("\nplat : " + p.getNom());
+                    out.writeObject("\ntype : " + p.getType());
+                    out.writeObject("\ncomposition : " + p.getComposition());
+                    out.writeObject("\nprix : " + p.getPrix());
                     System.out.println("Nom du plat : " + p.getNom() + " de type : " + p.getType() + " est composé de : " + p.getComposition() + " à un prix de : " + p.getPrix());
+                    
                 }
                 for(Integer i : tempo.values()){
-                    out.writeObject("\nnombre de plats dans l'ordre : " + i);
+                    out.writeObject("\nquantité (ordre d'affichage) : " + i);
                     System.out.println("Nombre de plats dans l'ordre : " + i);
                 }
-			    //out.writeObject(tempo);  //erreur de serialization de Plat on sait pas pourquoi
             }
 			System.out.println("\nEcriture de la facture réussie.\n");
 			out.close();
