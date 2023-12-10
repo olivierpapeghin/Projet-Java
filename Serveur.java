@@ -53,7 +53,6 @@ public class Serveur extends Employe{
 		// libre pour savoir où s'arrêter 
 		int max=0;
 		int indice_table=0;
-
 		while(max==0 && indice_table!=restaurant.getTables().size()){
 
 			if(restaurant.getTables().get(indice_table).occupe==false){ // Si on rencontre une table libre
@@ -62,7 +61,7 @@ public class Serveur extends Employe{
 			indice_table++; // On passe à la table suivante
 		}
 		// Si on n'a toujours pas de max (toutes les tables sont occupées)
-		if(indice_table==restaurant.getTables().size()){
+		if(max==restaurant.getTables().size()){
 			max=restaurant.getTables().size();
 		}
 
@@ -134,7 +133,7 @@ public class Serveur extends Employe{
 			}
 
 			// On attend la réponse du serveur
-			int reponse = utiles.enregistreInt(0,commande_prete.size(),scanner);
+			int reponse = utiles.enregistreInt(0,commande_prete.size()-1,scanner);
 			Commande commande_choisie = commande_prete.get(reponse);
 
 			// Maintenant on va retrouver la commande dans celles en cours dans le restaurant pour l'enlever
@@ -244,7 +243,18 @@ public class Serveur extends Employe{
 			}
 
 			//RETIRER LES CLIENTS
-			restaurant.getClientsActuels().remove(numtable-1);
+			// On va chercher le groupe client à retirer à partir du numéro de table donné plus haut
+			for (int id_client=0; id_client<restaurant.getClientsActuels().size();id_client++){
+
+				for(Table table : restaurant.getClientsActuels().get(id_client).getTable()){
+
+					if(table.getNumero()==numtable){ // On a trouvé le groupe client en question
+						restaurant.getClientsActuels().remove(id_client);
+						break; // On sort de la boucle pour éviter les problèmes
+					}
+				}
+			}
+			
 		}
 		else{
 			System.out.println("Il n'y a pas de clients.");
