@@ -175,22 +175,30 @@ public class Serveur extends Employe{
 			indice_table++; // On passe à la table suivante
 		}
 
-		
-		if(restaurant.getClientsActuels().size()!=0){ // S'il y a des clients prêts pour payer
-			System.out.println("\nQuel est le numéro de la table qui demande l'addition ?");
-			int numtable=utiles.enregistreInt(1, max, scanner);
+		//s'il y a des clients
+		if(restaurant.getClientsActuels().size()!=0){
+			String reponse = "oui";
+			boolean rien_en_cours = true;
+			int numtable = 0;
 
 			ArrayList<Commande> comEnCours = restaurant.getCommandes();
 
-			boolean rien_en_cours = true;
-			for(Commande comm : comEnCours){
-				if(comm.getTable() == numtable){
-					rien_en_cours = false;
+			//si tous les clients (et donc toutes les tables) ont été servis
+			while(reponse.equals("oui")){
+				System.out.println("\nQuel est le numéro de la table qui demande l'addition ?");
+				numtable = utiles.enregistreInt(1, max, scanner);
+				for(Commande comm : comEnCours){
+					if(comm.getTable() == numtable){
+						rien_en_cours = false;
+					}
 				}
+				System.out.println("\nY a-t-il d'autres tables pour ce groupe de clients (et qu'elles ont été servies) ? (oui/non)");
+				reponse = scanner.next();
 			}
 
+			
 			if(rien_en_cours == true){
-				//le fichier est crée une fois son nom rentré
+				//le fichier est créé une fois son nom rentré
 				System.out.println("\nQuel sera le nom du fichier ?");
 				String nom_fichier = scanner.next();
 				File fichier = new File(nom_fichier);
@@ -223,7 +231,7 @@ public class Serveur extends Employe{
 							for(Commande com : c.getCommandes()){
 								prix_tot += com.prixTotal();
 							}
-							facture = new Facture(c.getClients(), /*numtable,*/ prix_tot, c.getCommandes());
+							facture = new Facture(c.getClients(), prix_tot, c.getCommandes());
 							facture.Ecriture(nom_fichier);
 							restaurant.addFacture(facture);
 							fact_ecrite = true;
@@ -232,7 +240,7 @@ public class Serveur extends Employe{
 				}
 			}
 			else{
-				System.out.println("Certains clients n'ont pas encore reçu leur commande");
+				System.out.println("Certains clients de ce groupe n'ont pas encore reçu leur commande.");
 			}
 
 			//RETIRER LES CLIENTS
