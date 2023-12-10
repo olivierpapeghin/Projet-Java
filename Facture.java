@@ -1,3 +1,4 @@
+
 // Pour écrire en Sérializant dans les txt
 import java.io.BufferedOutputStream;
 import java.io.ObjectOutputStream;
@@ -56,6 +57,7 @@ public class Facture {
 		catch(IOException e){
 			System.out.println("Problème détecté : " + e);
 		}
+
     }
 
 }
